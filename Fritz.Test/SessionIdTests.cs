@@ -23,10 +23,6 @@ namespace FritzTR064.Test
         {
             UserName = Environment.GetEnvironmentVariable("FritzBoxUserName");
             Password = Environment.GetEnvironmentVariable("FritzBoxPassword");
-
-            Url = $"http://fritz.box:{49000}";
-
-            //Url = $"https://fritz.box:{this.SecurityPort}";
         }
 
         [TestMethod]
@@ -60,7 +56,7 @@ namespace FritzTR064.Test
             }
             return sid;
         }
-
+        
         public string GetResponse(string challenge, string kennwort)
         {
             return challenge + "-" + GetMD5Hash(challenge + "-" + kennwort);

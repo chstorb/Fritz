@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<phonebooks>
+  <phonebook owner="0" name="Telefonbuch">
+    <!-- number of contacts 17 -->
+    <contact>
+      <!-- numbers 1 -->
+      <category/>
+      <person>
+        <realName>Alle (Rundruf)</realName>
+      </person>
+      <telephony>
+        <services>
+          <!-- emails 0 -->
+        </services>
+        <number type="intern" quickdial="" vanity="" prio="0">**9</number>
+      </telephony>
+      <uniqueid>1232</uniqueid>
+    </contact>
+    <contact>
+      <!-- numbers 1 -->
+      <category/>
+      <person>
+        <realName>FRITZ!App Fon Desire HD</realName>
+      </person>
+      <telephony>
+        <services>
+          <!-- emails 0 -->
+        </services>
+        <number type="intern" quickdial="" vanity="" prio="0">**621</number>
+      </telephony>
+      <uniqueid>1235</uniqueid>
+    </contact>
+    <contact>
+      <!-- numbers 1 -->
+      <category/>
+      <person>
+        <realName>SRE</realName>
+        <imageURL>/download.lua?path=/var/media/ftp/JetFlash-Transcend4GB01/FRITZ/fonpix/1316705057-0.jpg</imageURL>
+      </person>
+      <telephony>
+        <services>
+          <!-- emails 0 -->
+        </services>
+        <number type="work" quickdial="1" vanity="" prio="0" >03039976794</number>
+      </telephony>
+      <uniqueid>1234</uniqueid>
+    </contact>
+  </phonebook>
+</phonebooks>

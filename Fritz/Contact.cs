@@ -1,3 +1,4 @@
+using System;
 using System.Web.Services;
 using System.Web.Services.Protocols;
 using System.Xml.Serialization;
@@ -16,8 +17,8 @@ namespace Fritz
         #region SoapHttpClientProtocol
         [WebServiceBinding("urn:dslforum-org:service:X_AVM-DE_OnTel:1", Namespace = "http://schemas.xmlsoap.org/soap/envelope/")]
         class x_contact : SoapHttpClientProtocol
-        {
-            [SoapDocumentMethod("urn:dslforum-org:service:X_AVM-DE_OnTel:1#GetInfo", RequestNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1", ResponseNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1")]
+        {            
+            [SoapDocumentMethod("urn:dslforum-org:service:X_AVM-DE_OnTel:1#GetInfo", RequestNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1", ResponseNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1")]            
             public void GetInfo([XmlElement("NewEnable", Namespace="")]out boolean Enable, [XmlElement("NewStatus", Namespace="")]out string Status, [XmlElement("NewLastConnect", Namespace="")]out string LastConnect, [XmlElement("NewUrl", Namespace="")]out string Url, [XmlElement("NewServiceId", Namespace="")]out string ServiceId, [XmlElement("NewUsername", Namespace="")]out string Username, [XmlElement("NewName", Namespace="")]out string Name)
             {
                 object[] results = this.Invoke("GetInfo", new object[] {  });
@@ -29,13 +30,13 @@ namespace Fritz
                 Username = (string)results[5];
                 Name = (string)results[6];
             }
-
+                        
             [SoapDocumentMethod("urn:dslforum-org:service:X_AVM-DE_OnTel:1#SetEnable", OneWay=true, RequestNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1", ResponseNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1")]
             public void SetEnable([XmlElement("NewEnable", Namespace="")]boolean Enable)
             {
                 this.Invoke("SetEnable", new object[] { Enable });
             }
-
+                        
             [SoapDocumentMethod("urn:dslforum-org:service:X_AVM-DE_OnTel:1#SetConfig", OneWay=true, RequestNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1", ResponseNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1")]
             public void SetConfig([XmlElement("NewEnable", Namespace="")]boolean Enable, [XmlElement("NewUrl", Namespace="")]string Url, [XmlElement("NewServiceId", Namespace="")]string ServiceId, [XmlElement("NewUsername", Namespace="")]string Username, [XmlElement("NewPassword", Namespace="")]string Password, [XmlElement("NewName", Namespace="")]string Name)
             {
@@ -169,16 +170,19 @@ namespace Fritz
             };
         }
 
+        [Obsolete("This action is obsolete and shall not be used any more.")]
         public void GetInfo(out boolean Enable, out string Status, out string LastConnect, out string Url, out string ServiceId, out string Username, out string Name)
         {
             ((x_contact)SoapHttpClientProtocol).GetInfo(out Enable, out Status, out LastConnect, out Url, out ServiceId, out Username, out Name);
         }
 
+        [Obsolete("This action is obsolete and shall not be used any more.")]
         public void SetEnable(boolean Enable)
         {
             ((x_contact)SoapHttpClientProtocol).SetEnable(Enable);
         }
 
+        [Obsolete("This action is obsolete and shall not be used any more.")]
         public void SetConfig(boolean Enable, string Url, string ServiceId, string Username, string Password, string Name)
         {
             ((x_contact)SoapHttpClientProtocol).SetConfig(Enable, Url, ServiceId, Username, Password, Name);
@@ -189,11 +193,26 @@ namespace Fritz
             ((x_contact)SoapHttpClientProtocol).GetInfoByIndex(Index, out Enable, out Status, out LastConnect, out Url, out ServiceId, out Username, out Name);
         }
 
+        /// <summary>
+        /// The action is used to trigger the telephone book synchronization manually. The synchronization starts if switching from false to true. After enabling, the synchronization is automatically started periodically once within 24 hours. All accounts are triggered to check for updates on COMS by invoking this action. If the revision has not increased, no synchronization will be made.
+        /// </summary>
+        /// <param name="Index"></param>
+        /// <param name="Enable"></param>
         public void SetEnableByIndex(ui2 Index, boolean Enable)
         {
             ((x_contact)SoapHttpClientProtocol).SetEnableByIndex(Index, Enable);
         }
 
+        /// <summary>
+        /// If the given index addresses an existing account the configuration is changed. If the index addresses  a new account and the index is OntelNumberOfEntries + 1 then a new account is generated.
+        /// </summary>
+        /// <param name="Index"></param>
+        /// <param name="Enable"></param>
+        /// <param name="Url"></param>
+        /// <param name="ServiceId"></param>
+        /// <param name="Username"></param>
+        /// <param name="Password"></param>
+        /// <param name="Name"></param>
         public void SetConfigByIndex(ui2 Index, boolean Enable, string Url, string ServiceId, string Username, string Password, string Name)
         {
             ((x_contact)SoapHttpClientProtocol).SetConfigByIndex(Index, Enable, Url, ServiceId, Username, Password, Name);
@@ -209,6 +228,10 @@ namespace Fritz
             ((x_contact)SoapHttpClientProtocol).GetNumberOfEntries(out OnTelNumberOfEntries);
         }
 
+        /// <summary>
+        /// The URL can be extended to limit the number of entries in the XML call list file. E.g. max=42 would limit to 42 calls in the list. If the parameter is not set or the value is 0 all calls will be inserted into the call list file. The URL can be extended to fetch a limited number of entries using the parameter days. E.g. days=7 would fetch the calls from now until 7 days in the past. If the parameter is not set or the value is 0 all calls will be inserted into the call list file. 
+        /// </summary>
+        /// <param name="CallListURL"></param>
         public void GetCallList(out string CallListURL)
         {
             ((x_contact)SoapHttpClientProtocol).GetCallList(out CallListURL);
@@ -219,6 +242,13 @@ namespace Fritz
             ((x_contact)SoapHttpClientProtocol).GetPhonebookList(out PhonebookList);
         }
 
+        /// <summary>
+        /// GetPhonebook
+        /// </summary>
+        /// <param name="PhonebookID"></param>
+        /// <param name="PhonebookName"></param>
+        /// <param name="PhonebookExtraID">The value of PhonebookExtraID may be an empty string. </param>
+        /// <param name="PhonebookURL"></param>
         public void GetPhonebook(ui2 PhonebookID, out string PhonebookName, out string PhonebookExtraID, out string PhonebookURL)
         {
             ((x_contact)SoapHttpClientProtocol).GetPhonebook(PhonebookID, out PhonebookName, out PhonebookExtraID, out PhonebookURL);
@@ -239,6 +269,12 @@ namespace Fritz
             ((x_contact)SoapHttpClientProtocol).GetPhonebookEntry(PhonebookID, PhonebookEntryID, out PhonebookEntryData);
         }
 
+        /// <summary>
+        /// Add new entries with “” as value for PhonebookEntryID. Change existing entries with a value used for PhonebookEntryID with GetPhonebookEntry. The variable PhonebookEntryData may contain a unique ID.
+        /// </summary>
+        /// <param name="PhonebookID"></param>
+        /// <param name="PhonebookEntryID"></param>
+        /// <param name="PhonebookEntryData"></param>
         public void SetPhonebookEntry(ui2 PhonebookID, ui4 PhonebookEntryID, string PhonebookEntryData)
         {
             ((x_contact)SoapHttpClientProtocol).SetPhonebookEntry(PhonebookID, PhonebookEntryID, PhonebookEntryData);

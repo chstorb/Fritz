@@ -3,6 +3,9 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Fritz;
 using System.Net;
+using System.IO;
+using System.Xml.Linq;
+using System.Xml.Serialization;
 
 namespace Fritz.Test
 {
@@ -91,6 +94,84 @@ namespace Fritz.Test
             myFritz.GetInfo(out Enabled, out DeviceRegistered, out DynDNSName, out Port);
         }
 
+        public string Load(string url)
+        {
+            var uri = new Uri(url);
+            var request = WebRequest.Create(uri) as HttpWebRequest;
+            var response = request.GetResponse() as HttpWebResponse;
+            var reader = new StreamReader(response.GetResponseStream());
+            var result = reader.ReadToEnd();
+            return result;
+        }
+
+        [TestMethod]
+        public void TestPhonebook()
+        {
+            var service = new Contact(Url);
+            service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: UserName, password: Password);
+
+            string phonebookList;
+            service.GetPhonebookList(out phonebookList);
+
+            var phonebookExtraID = Guid.NewGuid().ToString();
+            var phonebookName = "Temporary Phonebook";
+            service.AddPhonebook(phonebookExtraID, phonebookName);
+
+            service.GetPhonebookList(out phonebookList);
+
+            var phonebookIds = phonebookList.Split(',')
+                .Select(id => Convert.ToUInt16(id));
+
+            foreach (var phonebookId in phonebookIds)
+            {
+                string phonebookURL;
+                service.GetPhonebook(phonebookId, out phonebookName, out phonebookExtraID, out phonebookURL);
+
+                Console.WriteLine($"{phonebookId}\t{phonebookName}\t{phonebookExtraID}\t{phonebookURL}\r\n");
+                
+                var doc = XDocument.Load(phonebookURL);
+                var s = doc.Document.ToString();
+                Console.WriteLine(s);
+            }
+        }
+
+        [TestMethod]
+        public void TestDeserializePhonebook()
+        {
+            var service = new Contact(Url);
+            service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: UserName, password: Password);
+
+            string phonebookList;
+            service.GetPhonebookList(out phonebookList);
+
+            var phonebookId = Convert.ToUInt16(phonebookList.Split(',').FirstOrDefault() ?? "0");
+
+            string phonebookName;
+            string phonebookExtraId;            
+            string phonebookUrl;
+
+            service.GetPhonebook(phonebookId, out phonebookName, out phonebookExtraId, out phonebookUrl);
+            Console.WriteLine($"{phonebookId}\t{phonebookName}\t{phonebookExtraId}\t{phonebookUrl}\r\n");
+
+            Uri uri = new Uri(phonebookUrl);
+
+            var factory = new XmlSerializerFactory();
+            var ser = factory.CreateSerializer(typeof(Fritz.Model.phonebooks));
+            var request = (HttpWebRequest)WebRequest.Create(uri);
+            var response = (HttpWebResponse)request.GetResponse();
+            var responseStream = response.GetResponseStream();
+            Fritz.Model.phonebooks doc = (Fritz.Model.phonebooks)ser.Deserialize(responseStream);
+            responseStream.Close();
+
+            Assert.IsNotNull(doc);
+
+            Console.WriteLine(doc.phonebook.name);
+            foreach (Fritz.Model.phonebooksPhonebookContact contact in doc.phonebook.contact)
+            {
+                Console.WriteLine($"{contact.uniqueid}\t{contact.person.realName}\t{contact.telephony.number.Value}");
+            }
+        }
+
         [TestMethod]
         public void TestContact()
         {
@@ -99,24 +180,15 @@ namespace Fritz.Test
 
             ushort onTelNumberOfEntries;
             service.GetNumberOfEntries(out onTelNumberOfEntries);
-            
-            ushort phonebookId = 0;
-            string phonebookName;
-            string phonebookExtraID;
-            string phonebookURL;
-            service.GetPhonebook(phonebookId, out phonebookName, out phonebookExtraID, out phonebookURL);
-
-            var client = new WebClient();
-            client.DownloadFile(phonebookURL, "pbook.xml");
-
-            string phonebookList;
-            service.GetPhonebookList(out phonebookList);
 
             string callListUrl;
             service.GetCallList(out callListUrl);
+
+            var client = new WebClient();
             client.DownloadFile(callListUrl, "calllist.xml");
 
-            uint phonebookEntryID = 0;
+            UInt16 phonebookId = 0;
+            UInt16 phonebookEntryID = 0;
             string phonebookEntryData;
             service.GetPhonebookEntry(phonebookId, phonebookEntryID, out phonebookEntryData);
         }

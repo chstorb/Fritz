@@ -53,6 +53,7 @@
     <Compile Include="Lanhostconfigmgm.cs" />
     <Compile Include="Layer3forwarding.cs" />
     <Compile Include="Mgmsrv.cs" />
+    <Compile Include="Model\pbook.cs" />
     <Compile Include="Myfritz.cs" />
     <Compile Include="Remote.cs" />
     <Compile Include="Storage.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Wlanconfig2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

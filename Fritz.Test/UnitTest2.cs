@@ -38,7 +38,7 @@ namespace Fritz.Test
             ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
         }
 
-        public void GetSecurityPort()
+        private void GetSecurityPort()
         {            
             var deviceInfo = new Deviceinfo(Url);
             ushort SecurityPort;
@@ -103,136 +103,6 @@ namespace Fritz.Test
             var reader = new StreamReader(response.GetResponseStream());
             var result = reader.ReadToEnd();
             return result;
-        }
-
-        [TestMethod]
-        public void TestPhonebook()
-        {
-            var service = new Contact(Url);
-            service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: UserName, password: Password);
-
-            string phonebookList;
-            service.GetPhonebookList(out phonebookList);
-
-            var phonebookExtraID = Guid.NewGuid().ToString();
-            var phonebookName = "Temporary Phonebook";
-            service.AddPhonebook(phonebookExtraID, phonebookName);
-
-            service.GetPhonebookList(out phonebookList);
-
-            var phonebookIds = phonebookList.Split(',')
-                .Select(id => Convert.ToUInt16(id));
-
-            foreach (var phonebookId in phonebookIds)
-            {
-                string phonebookURL;
-                service.GetPhonebook(phonebookId, out phonebookName, out phonebookExtraID, out phonebookURL);
-
-                Console.WriteLine($"{phonebookId}\t{phonebookName}\t{phonebookExtraID}\t{phonebookURL}\r\n");
-                
-                var doc = XDocument.Load(phonebookURL);
-                var s = doc.Document.ToString();
-                Console.WriteLine(s);
-            }
-        }
-
-        [TestMethod]
-        public void TestDeserializePhonebookXml()
-        {
-            var service = new Contact(Url);
-            service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: UserName, password: Password);
-
-            string phonebookList;
-            service.GetPhonebookList(out phonebookList);
-
-            var phonebookId = Convert.ToUInt16(phonebookList.Split(',').FirstOrDefault() ?? "0");
-
-            string phonebookName;
-            string phonebookExtraId;            
-            string phonebookUrl;
-
-            service.GetPhonebook(phonebookId, out phonebookName, out phonebookExtraId, out phonebookUrl);
-            Console.WriteLine($"{phonebookId}\t{phonebookName}\t{phonebookExtraId}\t{phonebookUrl}\r\n");
-
-            phonebooks pbooks = FritzConvert.DeserializePhonebookXml(phonebookUrl);
-            
-            Assert.IsNotNull(pbooks);
-
-            Console.WriteLine(pbooks.Items[0].name);
-            foreach (phonebooksPhonebookContact contact in pbooks.Items[0].contact)
-            {
-                Console.WriteLine($"{contact.uniqueid}\t{contact.person[0].realName}\t{contact.telephony[0].number[0].Value}");
-            }
-        }
-
-        [TestMethod]
-        public void TestContact()
-        {
-            var service = new Contact(Url);
-            service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: UserName, password: Password);
-
-            ushort onTelNumberOfEntries;
-            service.GetNumberOfEntries(out onTelNumberOfEntries);
-
-            string callListUrl;
-            service.GetCallList(out callListUrl);
-
-            var client = new WebClient();
-            client.DownloadFile(callListUrl, "calllist.xml");
-
-            UInt16 phonebookId = 0;
-            UInt16 phonebookEntryID = 0;
-            string phonebookEntryData;
-            service.GetPhonebookEntry(phonebookId, phonebookEntryID, out phonebookEntryData);
-        }
-
-        [TestMethod]
-        public void TestSetPhonebookEntry()
-        {
-            var service = new Contact(Url);
-            service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: UserName, password: Password);
-
-            ushort phonebookId = 0;
-
-            // Add new entries with "" as value for PhonebookEntryID.Change existing entries with a value used for 
-            // PhonebookEntryID with GetPhonebookEntry.The variable PhonebookEntryData may contain a unique ID.
-            uint phonebookEntryID = 0;
-            string phonebookEntryData = "<?xml version=\"1.0\" encoding=\"utf-8\"?>"
-                + "<contact>"
-                + "<category/>"
-                + "<person>"
-                + "<realName>Mustermann, Marianne</realName>"
-                + "</person>"
-                + "<telephony nid=\"1\">"
-                + "<number type=\"home\" id=\"0\" vanity=\"\" prio=\"1\">0123456789</number>"
-                + "</telephony>"
-                + "<services/>"
-                + "<setup>"
-                + "<ringTone/>"
-                + "</setup>"
-                + "<mod_time>1487852657</mod_time>"
-                + "<uniqueid></uniqueid>"
-                + "</contact>";
-
-            service.SetPhonebookEntry(phonebookId, phonebookEntryID, phonebookEntryData);
-        }
-
-        [TestMethod]
-        public void TestGetDectHandsetList()
-        {
-            var service = new Contact(Url);
-            service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: UserName, password: Password);
-
-            string dectIDList;
-            service.GetDECTHandsetList(out dectIDList);
-
-            var dectIds = dectIDList.Split(',');
-            foreach(var id in dectIds)
-            { 
-                string handsetName;
-                ushort phonebookID;
-                service.GetDECTHandsetInfo((ushort)Convert.ToInt32(id), out handsetName, out phonebookID);
-            }
         }
         
         [TestMethod]

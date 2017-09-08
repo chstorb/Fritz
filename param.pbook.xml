@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<xsd xmlns='http://microsoft.com/dotnet/tools/xsd/' output='Fritz\Model'>
-  <generateClasses language='CS' namespace='Fritz.Model'>
-    <schema>pbook.xsd</schema>
-  </generateClasses>
-</xsd>

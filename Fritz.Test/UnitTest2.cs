@@ -2,6 +2,7 @@
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Fritz;
+using Fritz.Serialization;
 using System.Net;
 using System.IO;
 using System.Xml.Linq;
@@ -136,7 +137,7 @@ namespace Fritz.Test
         }
 
         [TestMethod]
-        public void TestDeserializePhonebook()
+        public void TestDeserializePhonebookXml()
         {
             var service = new Contact(Url);
             service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: UserName, password: Password);
@@ -153,22 +154,14 @@ namespace Fritz.Test
             service.GetPhonebook(phonebookId, out phonebookName, out phonebookExtraId, out phonebookUrl);
             Console.WriteLine($"{phonebookId}\t{phonebookName}\t{phonebookExtraId}\t{phonebookUrl}\r\n");
 
-            Uri uri = new Uri(phonebookUrl);
+            phonebooks pbooks = FritzConvert.DeserializePhonebookXml(phonebookUrl);
+            
+            Assert.IsNotNull(pbooks);
 
-            var factory = new XmlSerializerFactory();
-            var ser = factory.CreateSerializer(typeof(Fritz.Model.phonebooks));
-            var request = (HttpWebRequest)WebRequest.Create(uri);
-            var response = (HttpWebResponse)request.GetResponse();
-            var responseStream = response.GetResponseStream();
-            Fritz.Model.phonebooks doc = (Fritz.Model.phonebooks)ser.Deserialize(responseStream);
-            responseStream.Close();
-
-            Assert.IsNotNull(doc);
-
-            Console.WriteLine(doc.phonebook.name);
-            foreach (Fritz.Model.phonebooksPhonebookContact contact in doc.phonebook.contact)
+            Console.WriteLine(pbooks.Items[0].name);
+            foreach (phonebooksPhonebookContact contact in pbooks.Items[0].contact)
             {
-                Console.WriteLine($"{contact.uniqueid}\t{contact.person.realName}\t{contact.telephony.number.Value}");
+                Console.WriteLine($"{contact.uniqueid}\t{contact.person[0].realName}\t{contact.telephony[0].number[0].Value}");
             }
         }
 

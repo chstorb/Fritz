@@ -1,35 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:element name="phonebooks">
+<xs:schema id="phonebooks" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:element name="phonebooks" msdata:IsDataSet="true" msdata:Locale="en-US">
     <xs:complexType>
-      <xs:sequence>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
         <xs:element name="phonebook">
           <xs:complexType>
             <xs:sequence>
-              <xs:element maxOccurs="unbounded" name="contact">
+              <xs:element name="contact" minOccurs="0" maxOccurs="unbounded">
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element name="category" />
-                    <xs:element name="person">
+                    <xs:element name="category" type="xs:string" minOccurs="0" />
+                    <xs:element name="uniqueid" type="xs:string" minOccurs="0" />
+                    <xs:element name="person" minOccurs="0" maxOccurs="unbounded">
                       <xs:complexType>
                         <xs:sequence>
-                          <xs:element name="realName" type="xs:string" />
-                          <xs:element minOccurs="0" name="imageURL" type="xs:string" />
+                          <xs:element name="realName" type="xs:string" minOccurs="0" />
+                          <xs:element name="imageURL" type="xs:string" minOccurs="0" />
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="telephony">
+                    <xs:element name="telephony" minOccurs="0" maxOccurs="unbounded">
                       <xs:complexType>
                         <xs:sequence>
-                          <xs:element name="services" type="xs:string" />
-                          <xs:element name="number">
+                          <xs:element name="services" type="xs:string" minOccurs="0" />
+                          <xs:element name="number" nillable="true" minOccurs="0" maxOccurs="unbounded">
                             <xs:complexType>
-                              <xs:simpleContent>
+                              <xs:simpleContent msdata:ColumnName="number_Text" msdata:Ordinal="4">
                                 <xs:extension base="xs:string">
-                                  <xs:attribute name="type" type="xs:string" use="required" />
-                                  <xs:attribute name="quickdial" type="xs:string" use="required" />
-                                  <xs:attribute name="vanity" type="xs:string" use="required" />
-                                  <xs:attribute name="prio" type="xs:unsignedByte" use="required" />
+                                  <xs:attribute name="type" type="xs:string" />
+                                  <xs:attribute name="quickdial" type="xs:string" />
+                                  <xs:attribute name="vanity" type="xs:string" />
+                                  <xs:attribute name="prio" type="xs:string" />
                                 </xs:extension>
                               </xs:simpleContent>
                             </xs:complexType>
@@ -37,16 +38,15 @@
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="uniqueid" type="xs:unsignedShort" />
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
-            <xs:attribute name="owner" type="xs:unsignedByte" use="required" />
-            <xs:attribute name="name" type="xs:string" use="required" />
+            <xs:attribute name="owner" type="xs:string" />
+            <xs:attribute name="name" type="xs:string" />
           </xs:complexType>
         </xs:element>
-      </xs:sequence>
+      </xs:choice>
     </xs:complexType>
   </xs:element>
 </xs:schema>

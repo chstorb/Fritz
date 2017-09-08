@@ -11,7 +11,7 @@
 // 
 // Dieser Quellcode wurde automatisch generiert von xsd, Version=4.6.1055.0.
 // 
-namespace Fritz.Model {
+namespace Fritz.Serialization {
     using System.Xml.Serialization;
     
     
@@ -24,15 +24,16 @@ namespace Fritz.Model {
     [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
     public partial class phonebooks {
         
-        private phonebooksPhonebook phonebookField;
+        private phonebooksPhonebook[] itemsField;
         
         /// <remarks/>
-        public phonebooksPhonebook phonebook {
+        [System.Xml.Serialization.XmlElementAttribute("phonebook", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public phonebooksPhonebook[] Items {
             get {
-                return this.phonebookField;
+                return this.itemsField;
             }
             set {
-                this.phonebookField = value;
+                this.itemsField = value;
             }
         }
     }
@@ -47,12 +48,12 @@ namespace Fritz.Model {
         
         private phonebooksPhonebookContact[] contactField;
         
-        private byte ownerField;
+        private string ownerField;
         
         private string nameField;
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("contact")]
+        [System.Xml.Serialization.XmlElementAttribute("contact", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public phonebooksPhonebookContact[] contact {
             get {
                 return this.contactField;
@@ -64,7 +65,7 @@ namespace Fritz.Model {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public byte owner {
+        public string owner {
             get {
                 return this.ownerField;
             }
@@ -93,16 +94,17 @@ namespace Fritz.Model {
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class phonebooksPhonebookContact {
         
-        private object categoryField;
+        private string categoryField;
         
-        private phonebooksPhonebookContactPerson personField;
+        private string uniqueidField;
         
-        private phonebooksPhonebookContactTelephony telephonyField;
+        private phonebooksPhonebookContactPerson[] personField;
         
-        private ushort uniqueidField;
+        private phonebooksPhonebookContactTelephony[] telephonyField;
         
         /// <remarks/>
-        public object category {
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string category {
             get {
                 return this.categoryField;
             }
@@ -112,7 +114,19 @@ namespace Fritz.Model {
         }
         
         /// <remarks/>
-        public phonebooksPhonebookContactPerson person {
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string uniqueid {
+            get {
+                return this.uniqueidField;
+            }
+            set {
+                this.uniqueidField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("person", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public phonebooksPhonebookContactPerson[] person {
             get {
                 return this.personField;
             }
@@ -122,22 +136,13 @@ namespace Fritz.Model {
         }
         
         /// <remarks/>
-        public phonebooksPhonebookContactTelephony telephony {
+        [System.Xml.Serialization.XmlElementAttribute("telephony", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public phonebooksPhonebookContactTelephony[] telephony {
             get {
                 return this.telephonyField;
             }
             set {
                 this.telephonyField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public ushort uniqueid {
-            get {
-                return this.uniqueidField;
-            }
-            set {
-                this.uniqueidField = value;
             }
         }
     }
@@ -155,6 +160,7 @@ namespace Fritz.Model {
         private string imageURLField;
         
         /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public string realName {
             get {
                 return this.realNameField;
@@ -165,6 +171,7 @@ namespace Fritz.Model {
         }
         
         /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public string imageURL {
             get {
                 return this.imageURLField;
@@ -185,9 +192,10 @@ namespace Fritz.Model {
         
         private string servicesField;
         
-        private phonebooksPhonebookContactTelephonyNumber numberField;
+        private phonebooksPhonebookContactTelephonyNumber[] numberField;
         
         /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public string services {
             get {
                 return this.servicesField;
@@ -198,7 +206,8 @@ namespace Fritz.Model {
         }
         
         /// <remarks/>
-        public phonebooksPhonebookContactTelephonyNumber number {
+        [System.Xml.Serialization.XmlElementAttribute("number", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        public phonebooksPhonebookContactTelephonyNumber[] number {
             get {
                 return this.numberField;
             }
@@ -222,7 +231,7 @@ namespace Fritz.Model {
         
         private string vanityField;
         
-        private byte prioField;
+        private string prioField;
         
         private string valueField;
         
@@ -261,7 +270,7 @@ namespace Fritz.Model {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public byte prio {
+        public string prio {
             get {
                 return this.prioField;
             }

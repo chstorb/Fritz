@@ -1,6 +1,6 @@
 @if "%WindowsSDK_ExecutablePath_x64%"=="" goto error_no_WindowsSDK_ExecutablePath_x64
 
-"%WindowsSDK_ExecutablePath_x64%\xsd" /p:param.generatecodefiles.xml
+"%WindowsSDK_ExecutablePath_x64%\xsd" /p:param.generatexmlschema.xml
 
 @goto end
 

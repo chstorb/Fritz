@@ -10,7 +10,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{50F84CB2-2025-45D5-9434-190CFB054D4E}"
 	ProjectSection(SolutionItems) = preProject
 		GenerateCodeFiles.cmd = GenerateCodeFiles.cmd
-		param.pbook.xml = param.pbook.xml
+		GenerateXmlSchema.cmd = GenerateXmlSchema.cmd
+		param.generatecodefiles.xml = param.generatecodefiles.xml
+		param.generatexmlschema.xml = param.generatexmlschema.xml
 		pbook.xml = pbook.xml
 		pbook.xsd = pbook.xsd
 	EndProjectSection

@@ -53,9 +53,10 @@
     <Compile Include="Lanhostconfigmgm.cs" />
     <Compile Include="Layer3forwarding.cs" />
     <Compile Include="Mgmsrv.cs" />
-    <Compile Include="Model\pbook.cs" />
     <Compile Include="Myfritz.cs" />
     <Compile Include="Remote.cs" />
+    <Compile Include="Serialization\FritzConvert.cs" />
+    <Compile Include="Serialization\pbook.cs" />
     <Compile Include="Storage.cs" />
     <Compile Include="Tam.cs" />
     <Compile Include="Time.cs" />

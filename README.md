@@ -1,2 +1,2 @@
 # Fritz
-C# TR064 implementation 
+C# FRITZ!Box TR064 implementation 

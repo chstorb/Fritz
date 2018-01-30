@@ -109,6 +109,7 @@ namespace Fritz.Test
         public void TestDeviceConfigRebootFritzBox()
         {
             Deviceconfig service = new Deviceconfig(Url);
+            service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: UserName, password: Password);
             service.Reboot(); 
         }
     }

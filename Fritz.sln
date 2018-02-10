@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.9
+VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fritz", "Fritz\Fritz.csproj", "{0E745728-7799-45AB-ACFE-BE108DD8415C}"
 EndProject
@@ -11,10 +11,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		GenerateCodeFiles.cmd = GenerateCodeFiles.cmd
 		GenerateXmlSchema.cmd = GenerateXmlSchema.cmd
+		LICENSE.txt = LICENSE.txt
 		param.generatecodefiles.xml = param.generatecodefiles.xml
 		param.generatexmlschema.xml = param.generatexmlschema.xml
 		pbook.xml = pbook.xml
 		pbook.xsd = pbook.xsd
+		README.md = README.md
 	EndProjectSection
 EndProject
 Global
@@ -34,5 +36,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E05B490F-8F0F-4F7A-A773-DE6D22394653}
 	EndGlobalSection
 EndGlobal

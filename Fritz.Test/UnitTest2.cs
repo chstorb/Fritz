@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Fritz;
+using Fritz.Services;
 using Fritz.Serialization;
 using System.Net;
 using System.IO;

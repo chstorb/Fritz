@@ -9,7 +9,7 @@ using boolean = System.Boolean;
 using uuid = System.String;
 using dateTime = System.DateTime;
 
-namespace Fritz
+namespace Fritz.Services
 {
     public class Wancommonifconfig1
     {

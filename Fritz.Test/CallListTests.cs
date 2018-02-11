@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Net;
-using Fritz;
+using Fritz.Services;
 
 namespace FritzTR064.Test
 {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Fritz;
+using Fritz.Services;
 using System.Net;
 using System.Xml.Linq;
 using Fritz.Serialization;
@@ -93,7 +93,7 @@ namespace FritzTR064.Test
             service.GetPhonebook(phonebookId, out phonebookName, out phonebookExtraId, out phonebookUrl);
             Console.WriteLine($"{phonebookId}\t{phonebookName}\t{phonebookExtraId}\t{phonebookUrl}\r\n");
 
-            phonebooks pbooks = FritzConvert.DeserializePhonebookXml(phonebookUrl);
+            phonebooks pbooks = FritzSerializer.DeserializePhonebookXml(phonebookUrl);
 
             Assert.IsNotNull(pbooks);
 

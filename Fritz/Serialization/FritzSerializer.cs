@@ -11,11 +11,11 @@ namespace Fritz.Serialization
     /// <summary>
     /// FritzConvert class
     /// </summary>
-    public class FritzConvert
+    public static class FritzSerializer
     {
         public static phonebooks DeserializePhonebookXml(string phonebookUrl)
         {
-            Uri uri = new Uri(phonebookUrl);
+            var uri = new Uri(phonebookUrl);
 
             var factory = new XmlSerializerFactory();
             var ser = factory.CreateSerializer(typeof(phonebooks));

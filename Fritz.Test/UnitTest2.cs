@@ -13,44 +13,22 @@ namespace Fritz.Test
     [TestClass]
     public class UnitTest2
     {
-        private string UserName { get; set; }
-        private string Password { get; set; }
-        private string Url { get; set; }
-        private ushort SecurityPort { get; set; }
+        private FritzBox _fb = null;
 
         [TestInitialize]
         public void Initialize()
         {
-            UserName = Environment.GetEnvironmentVariable("FritzBoxUserName");
-            Password = Environment.GetEnvironmentVariable("FritzBoxPassword");
+            var userName = Environment.GetEnvironmentVariable("FritzBoxUserName");
+            var password = Environment.GetEnvironmentVariable("FritzBoxPassword");
 
-            DisableServerCertificateValidation();
-
-            Url = $"http://fritz.box:{49000}";
-
-            GetSecurityPort();
-
-            Url = $"https://fritz.box:{this.SecurityPort}";
-        }
-
-        private void DisableServerCertificateValidation()
-        {
-            ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
-        }
-
-        private void GetSecurityPort()
-        {            
-            var deviceInfo = new Deviceinfo(Url);
-            ushort SecurityPort;
-            deviceInfo.GetSecurityPort(out SecurityPort);
-            this.SecurityPort = SecurityPort;
+            _fb = new FritzBox { UserName = userName, Password = password };
         }
 
         [TestMethod]
         public void TestGetExternalIpAddress()
         {            
-            Wanpppconn1 service = new Wanpppconn1(Url);
-            service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: UserName, password: Password);
+            Wanpppconn1 service = new Wanpppconn1(_fb.Url);
+            service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: _fb.UserName, password: _fb.Password);
             string ip;
             service.GetExternalIPAddress(out ip);
         }
@@ -58,8 +36,8 @@ namespace Fritz.Test
         [TestMethod]
         public void TestTamGetInfo()
         {
-            Tam service = new Tam(Url);
-            service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: UserName, password: Password);
+            Tam service = new Tam(_fb.Url);
+            service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: _fb.UserName, password: _fb.Password);
 
             ushort index = 0; 
             bool enable;
@@ -74,8 +52,8 @@ namespace Fritz.Test
         [TestMethod]
         public void TestGetTamMessageList()
         {
-            Tam service = new Tam(Url);
-            service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: UserName, password: Password);
+            Tam service = new Tam(_fb.Url);
+            service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: _fb.UserName, password: _fb.Password);
             string url;
             service.GetMessageList(3, out url); 
         }
@@ -83,9 +61,9 @@ namespace Fritz.Test
         [TestMethod]
         public void TestMyFritzGetInfo()
         {
-            var myFritz = new Myfritz(Url);
+            var myFritz = new Myfritz(_fb.Url);
 
-            myFritz.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: UserName, password: Password);
+            myFritz.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: _fb.UserName, password: _fb.Password);
 
             bool Enabled;
             bool DeviceRegistered;
@@ -108,8 +86,8 @@ namespace Fritz.Test
         [TestMethod]
         public void TestDeviceConfigRebootFritzBox()
         {
-            Deviceconfig service = new Deviceconfig(Url);
-            service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: UserName, password: Password);
+            Deviceconfig service = new Deviceconfig(_fb.Url);
+            service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: _fb.UserName, password: _fb.Password);
             service.Reboot(); 
         }
     }

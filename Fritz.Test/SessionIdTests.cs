@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Text;
 using System.IO;
 
-namespace FritzTR064.Test
+namespace Fritz.Test
 {
     /// <summary>
     /// Beispiel-Code für den Bezug einer Session-ID ab FRITZ!OS 5.50 

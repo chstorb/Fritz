@@ -6,49 +6,27 @@ using System.Net;
 using System.Xml.Linq;
 using Fritz.Serialization;
 
-namespace FritzTR064.Test
+namespace Fritz.Test
 {
     [TestClass]
     public class PhonebookTests
     {
-        private string UserName { get; set; }
-        private string Password { get; set; }
-        private string Url { get; set; }
-        private ushort SecurityPort { get; set; }
-
+        private FritzBox _fb = null;
+    
         [TestInitialize]
         public void Initialize()
         {
-            UserName = Environment.GetEnvironmentVariable("FritzBoxUserName");
-            Password = Environment.GetEnvironmentVariable("FritzBoxPassword");
+            var userName = Environment.GetEnvironmentVariable("FritzBoxUserName");
+            var password = Environment.GetEnvironmentVariable("FritzBoxPassword");
 
-            DisableServerCertificateValidation();
-
-            Url = $"http://fritz.box:{49000}";
-
-            GetSecurityPort();
-
-            Url = $"https://fritz.box:{this.SecurityPort}";
+            _fb = new FritzBox { UserName = userName, Password = password };
         }
-
-        private void DisableServerCertificateValidation()
-        {
-            ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
-        }
-
-        private void GetSecurityPort()
-        {
-            var deviceInfo = new Deviceinfo(Url);
-            ushort SecurityPort;
-            deviceInfo.GetSecurityPort(out SecurityPort);
-            this.SecurityPort = SecurityPort;
-        }
-
+        
         [TestMethod]
         public void TestPhonebook()
         {
-            var service = new Contact(Url);
-            service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: UserName, password: Password);
+            var service = new Contact(_fb.Url);
+            service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: _fb.UserName, password: _fb.Password);
 
             string phonebookList;
             service.GetPhonebookList(out phonebookList);
@@ -78,8 +56,8 @@ namespace FritzTR064.Test
         [TestMethod]
         public void TestDeserializePhonebookXml()
         {
-            var service = new Contact(Url);
-            service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: UserName, password: Password);
+            var service = new Contact(_fb.Url);
+            service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: _fb.UserName, password: _fb.Password);
 
             string phonebookList;
             service.GetPhonebookList(out phonebookList);
@@ -107,8 +85,8 @@ namespace FritzTR064.Test
         [TestMethod]
         public void TestGetPhonebookEntry()
         {
-            var service = new Contact(Url);
-            service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: UserName, password: Password);
+            var service = new Contact(_fb.Url);
+            service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: _fb.UserName, password: _fb.Password);
 
             UInt16 phonebookId = 0;
             UInt16 phonebookEntryID = 0;
@@ -119,8 +97,8 @@ namespace FritzTR064.Test
         [TestMethod]
         public void TestSetPhonebookEntry()
         {
-            var service = new Contact(Url);
-            service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: UserName, password: Password);
+            var service = new Contact(_fb.Url);
+            service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: _fb.UserName, password: _fb.Password);
 
             ushort phonebookId = 0;
 

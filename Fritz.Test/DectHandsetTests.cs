@@ -3,49 +3,27 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Fritz.Services;
 using System.Net;
 
-namespace FritzTR064.Test
+namespace Fritz.Test
 {
     [TestClass]
     public class DectHandsetTests
     {
-        private string UserName { get; set; }
-        private string Password { get; set; }
-        private string Url { get; set; }
-        private ushort SecurityPort { get; set; }
+        private FritzBox _fb = null;
 
         [TestInitialize]
         public void Initialize()
         {
-            UserName = Environment.GetEnvironmentVariable("FritzBoxUserName");
-            Password = Environment.GetEnvironmentVariable("FritzBoxPassword");
+            var userName = Environment.GetEnvironmentVariable("FritzBoxUserName");
+            var password = Environment.GetEnvironmentVariable("FritzBoxPassword");
 
-            DisableServerCertificateValidation();
-
-            Url = $"http://fritz.box:{49000}";
-
-            GetSecurityPort();
-
-            Url = $"https://fritz.box:{this.SecurityPort}";
-        }
-
-        private void DisableServerCertificateValidation()
-        {
-            ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
-        }
-
-        private void GetSecurityPort()
-        {
-            var deviceInfo = new Deviceinfo(Url);
-            ushort SecurityPort;
-            deviceInfo.GetSecurityPort(out SecurityPort);
-            this.SecurityPort = SecurityPort;
+            _fb = new FritzBox { UserName = userName, Password = password };
         }
 
         [TestMethod]
         public void TestGetDectHandsetList()
         {
-            var service = new Contact(Url);
-            service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: UserName, password: Password);
+            var service = new Contact(_fb.Url);
+            service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: _fb.UserName, password: _fb.Password);
 
             string dectIDList;
             service.GetDECTHandsetList(out dectIDList);

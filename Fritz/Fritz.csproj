@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FritzBox.cs" />
     <Compile Include="Services\Contact.cs" />
     <Compile Include="Services\Deviceconfig.cs" />
     <Compile Include="Services\Deviceinfo.cs" />

@@ -86,9 +86,7 @@ namespace Fritz.Test
         [TestMethod]
         public void TestDeviceConfigRebootFritzBox()
         {
-            Deviceconfig service = new Deviceconfig(_fb.Url);
-            service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: _fb.UserName, password: _fb.Password);
-            service.Reboot(); 
+            _fb.Reboot();
         }
     }
 }

@@ -55,7 +55,7 @@ namespace Fritz
         }
 
         /// <summary>
-        /// GetSecurityPort
+        /// Get the security port
         /// </summary>
         /// <returns></returns>
         public ushort GetSecurityPort()
@@ -65,6 +65,15 @@ namespace Fritz
             return port;
         }
 
-
+        /// <summary>
+        /// Reboot Fritz!Box
+        /// </summary>
+        /// <returns></returns>
+        public void Reboot()
+        {
+            var service = new Deviceconfig(Url);
+            service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: UserName, password: Password);
+            service.Reboot(); 
+        }
     }
 }

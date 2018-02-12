@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>https://github.com/chstorb/Fritz/blob/master/LICENSE.txt</licenseUrl>
+    <projectUrl>https://github.com/chstorb/Fritz</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>Initial create.</releaseNotes>
+    <copyright>Copyright © STC STORB Consulting 2018</copyright>
+    <tags>.net45</tags>
+  </metadata>
+</package>

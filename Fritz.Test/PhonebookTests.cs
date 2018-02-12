@@ -28,8 +28,7 @@ namespace Fritz.Test
             var service = new Contact(_fb.Url);
             service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: _fb.UserName, password: _fb.Password);
 
-            string phonebookList;
-            service.GetPhonebookList(out phonebookList);
+            service.GetPhonebookList(out string phonebookList);
 
             var phonebookExtraID = Guid.NewGuid().ToString();
             var phonebookName = "Temporary Phonebook";
@@ -42,8 +41,7 @@ namespace Fritz.Test
 
             foreach (var phonebookId in phonebookIds)
             {
-                string phonebookURL;
-                service.GetPhonebook(phonebookId, out phonebookName, out phonebookExtraID, out phonebookURL);
+                service.GetPhonebook(phonebookId, out phonebookName, out phonebookExtraID, out string phonebookURL);
 
                 Console.WriteLine($"{phonebookId}\t{phonebookName}\t{phonebookExtraID}\t{phonebookURL}\r\n");
 
@@ -80,6 +78,12 @@ namespace Fritz.Test
             {
                 Console.WriteLine($"{contact.uniqueid}\t{contact.person[0].realName}\t{contact.telephony[0].number[0].Value}");
             }
+        }
+
+        [TestMethod]
+        public void TestWritePhonebookCsv()
+        {
+            _fb.WritePhonebookCsv();
         }
 
         [TestMethod]

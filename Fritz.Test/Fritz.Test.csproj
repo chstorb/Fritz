@@ -57,9 +57,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="WebClientTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UnitTest2.cs" />
+    <Compile Include="SimpleTests.cs" />
     <Compile Include="SessionIdTests.cs" />
     <Compile Include="PhonebookTests.cs" />
     <Compile Include="CallListTests.cs" />

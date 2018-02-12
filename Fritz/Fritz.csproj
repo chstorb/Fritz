@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FritzBox.cs" />
+    <Compile Include="FritzBoxBase.cs" />
     <Compile Include="Services\Contact.cs" />
     <Compile Include="Services\Deviceconfig.cs" />
     <Compile Include="Services\Deviceinfo.cs" />

@@ -13,7 +13,7 @@ namespace Fritz.Test
     [TestClass]
     public class UnitTest2
     {
-        private FritzBox _fb = null;
+        private FritzBoxBase _fb = null;
 
         [TestInitialize]
         public void Initialize()

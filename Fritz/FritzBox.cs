@@ -1,6 +1,8 @@
-﻿using Fritz.Services;
+﻿using Fritz.Serialization;
+using Fritz.Services;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -11,58 +13,57 @@ namespace Fritz
     /// <summary>
     /// FritzBox class
     /// </summary>
-    public class FritzBox
+    public sealed class FritzBox : FritzBoxBase
     {
-        #region Properties
-
-        public string UserName { get; set; }
-        public string Password { get; set; }
-        public string Host { get; set; } = "fritz.box";
-        public ushort Port { get; set; } = 49000;
-        public string Url { get; set; }
-        public ushort SecurityPort { get; set; }
-
-        #endregion
-
         /// <summary>
         /// Default constructor
         /// </summary>
         public FritzBox()
+            : base()
         {
-            Initialize();
         }
 
         /// <summary>
-        /// Initialize
+        /// Write phonebook to csv file.
         /// </summary>
-        private void Initialize()
+        /// <param name="name">phonebook name, if empty all phonebooks will be written</param>
+        public void WritePhonebookCsv(string name = "")
         {
-            DisableServerCertificateValidation();
+            var service = new Contact(Url);
+            service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: UserName, password: Password);
 
-            Url = $"http://{Host}:{Port}";
+            var phonebookList = new List<Tuple<ushort,string,string,string>>();
 
-            SecurityPort = GetSecurityPort();
+            service.GetPhonebookList(out string csvPhonebookIds);
 
-            Url = $"https://{Host}:{SecurityPort}";
-        }
+            var phonebookIds = csvPhonebookIds.Split(',').Select(i => Convert.ToUInt16(i));
 
-        /// <summary>
-        /// DisableServerCertificateValidation
-        /// </summary>
-        private void DisableServerCertificateValidation()
-        {
-            ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
-        }
+            foreach (var phonebookId in phonebookIds)
+            {
+                service.GetPhonebook(phonebookId, out string phonebookName, out string phonebookExtraId, out string phonebookUrl);
+                phonebookList.Add(new Tuple<ushort, string, string, string>(phonebookId, phonebookName, phonebookExtraId, phonebookUrl));
+            }
 
-        /// <summary>
-        /// GetSecurityPort
-        /// </summary>
-        /// <returns></returns>
-        private ushort GetSecurityPort()
-        {
-            var deviceInfo = new Deviceinfo(Url);
-            deviceInfo.GetSecurityPort(out ushort port);
-            return port;
+            foreach (var phoneBook in phonebookList)
+            {
+                var phonebookName = phoneBook.Item2;
+
+                if (!string.IsNullOrEmpty(name) && !phonebookName.Equals(name)) continue;
+
+                var phonebookUrl = phoneBook.Item4;
+                phonebooks pbooks = FritzSerializer.DeserializePhonebookXml(phonebookUrl);
+
+                if (null == pbooks) continue;
+
+                var content = new StringBuilder();
+                foreach (phonebooksPhonebookContact contact in pbooks.Items[0].contact)
+                {
+                    content.Append($"{contact.uniqueid};{contact.person[0].realName};{contact.telephony[0].number[0].Value}{Environment.NewLine}");
+                }
+
+                var fileName = $"{phonebookName}.csv";
+                File.WriteAllText(fileName, content.ToString(), Encoding.UTF8);
+            }
         }
     }
 }

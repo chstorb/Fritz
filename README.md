@@ -1,2 +1,35 @@
-# Fritz
-C# FRITZ!Box TR064 implementation 
+## Description
+
+FRITZ!Box TR064 implementation 
+
+## Example
+
+### Write phonebook to csv file
+
+1. Open Visual Studio
+2. Create a new **Console App**
+3. Add the [Fritz NuGet package](https://www.nuget.org/packages/Fritz) to your project. 
+
+       PM> Install-Package Fritz -Version 1.0.0
+
+4. Add the following code to the main method:
+
+        namespace ConsoleApp
+        {
+            class Program
+            {
+                static void Main(string[] args)
+                {
+                    var fritzBox = new FritzBox()
+                    {
+                        UserName = <YOUR_USERNAME>,
+                        Password = <YOUR_PASSWORD>
+                    };
+                    
+                    // Write csv file to the application folder
+                    fritzBox.WritePhonebookCsv();
+                }
+            }
+        }
+
+5. Run the program

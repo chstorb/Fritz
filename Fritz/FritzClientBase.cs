@@ -1,17 +1,15 @@
 ﻿using Fritz.Services;
+using Fritz.Extensions;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
+using Fritz.Serialization;
 
 namespace Fritz
 {
     /// <summary>
     /// FritzBoxBase class
     /// </summary>
-    public abstract class FritzBoxBase
+    public abstract class FritzClientBase
     {
         #region Properties
 
@@ -27,7 +25,7 @@ namespace Fritz
         /// <summary>
         /// Default constructor
         /// </summary>
-        public FritzBoxBase()
+        public FritzClientBase()
         {
             Initialize();
         }
@@ -54,6 +52,8 @@ namespace Fritz
             ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
         }
 
+        #region Deviceinfo
+
         /// <summary>
         /// Get the security port
         /// </summary>
@@ -65,6 +65,10 @@ namespace Fritz
             return port;
         }
 
+        #endregion deviceinfo
+
+        #region Deviceconfig
+
         /// <summary>
         /// Reboot Fritz!Box
         /// </summary>
@@ -75,5 +79,49 @@ namespace Fritz
             service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: UserName, password: Password);
             service.Reboot(); 
         }
+
+        #endregion
+
+        #region Contact
+
+        /// <summary>
+        /// Add phonebook.
+        /// </summary>
+        /// <param name="name">phonebook name</param>
+        /// <param name="extraId">phonebook extra id (optional)</param>        
+        public void AddPhonebook(string name, string extraId="")
+        {
+            var service = new Contact(Url);
+            service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: UserName, password: Password);
+
+            if (service.PhonebookExists(name)) return;
+
+            if (string.IsNullOrEmpty(extraId)) extraId = Guid.NewGuid().ToString();
+
+            service.AddPhonebook(extraId, name);
+        }
+
+        /// <summary>
+        /// Delete phonebook.
+        /// </summary>
+        /// <param name="name">phonebook name</param>
+        public void DeletePhonebook(string name)
+        {
+            var service = new Contact(Url);
+            service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: UserName, password: Password);
+
+            if (!service.PhonebookExists(name)) return;
+
+            service.DeletePhonebook(name);
+        }
+
+        public phonebooksPhonebook GetPhonebook(string name)
+        {
+            var service = new Contact(Url);
+            service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: UserName, password: Password);
+            return service.GetPhonebook(name);
+        }
+
+        #endregion
     }
 }

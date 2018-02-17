@@ -22,8 +22,8 @@ FRITZ!Box TR064 implementation
                 {
                     var fritzBox = new FritzBox()
                     {
-                        UserName = <YOUR_USERNAME>,
-                        Password = <YOUR_PASSWORD>
+                        UserName = "{YOUR_USERNAME}",
+                        Password = "{YOUR_PASSWORD}"
                     };
                     
                     // Write csv file to the application folder
@@ -33,3 +33,7 @@ FRITZ!Box TR064 implementation
         }
 
 5. Run the program
+
+## License
+
+Licensed under the [MIT](https://github.com/chstorb/Fritz/blob/master/LICENSE.txt) License.

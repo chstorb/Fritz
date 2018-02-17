@@ -8,7 +8,7 @@ namespace Fritz.Test
     [TestClass]
     public class CallListTests
     {
-        private FritzBox _fb = null;
+        private FritzClient _fb = null;
 
         [TestInitialize]
         public void Initialize()
@@ -16,7 +16,7 @@ namespace Fritz.Test
             var userName = Environment.GetEnvironmentVariable("FritzBoxUserName");
             var password = Environment.GetEnvironmentVariable("FritzBoxPassword");
 
-            _fb = new FritzBox { UserName = userName, Password = password };
+            _fb = new FritzClient { UserName = userName, Password = password };
         }
 
         [TestMethod]

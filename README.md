@@ -1,4 +1,4 @@
-# Fritz
+#Fritz.NET
 
 ## Description
 

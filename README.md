@@ -42,4 +42,4 @@ Licensed under the [MIT](https://github.com/chstorb/Fritz/blob/master/LICENSE.tx
 
 ## External links
 * [AVM Developer Support](https://avm.de/service/schnittstellen/) 
-* [broadband formum - Technical Reports](https://www.broadband-forum.org/standards-and-software/technical-specifications/technical-reports)
+* [broadband forum - Technical Reports](https://www.broadband-forum.org/standards-and-software/technical-specifications/technical-reports)

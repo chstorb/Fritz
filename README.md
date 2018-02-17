@@ -1,6 +1,8 @@
+# Fritz
+
 ## Description
 
-FRITZ!Box TR064 implementation 
+FRITZ!Box free and open-source TR064 implementation.
 
 ## Example
 
@@ -10,7 +12,7 @@ FRITZ!Box TR064 implementation
 2. Create a new **Console App**
 3. Add the [Fritz NuGet package](https://www.nuget.org/packages/Fritz) to your project. 
 
-       PM> Install-Package Fritz -Version 1.0.0
+       PM> Install-Package Fritz -Version 1.0.1
 
 4. Add the following code to the main method:
 
@@ -37,3 +39,7 @@ FRITZ!Box TR064 implementation
 ## License
 
 Licensed under the [MIT](https://github.com/chstorb/Fritz/blob/master/LICENSE.txt) License.
+
+## External links
+* [AVM Developer Support](https://avm.de/service/schnittstellen/) 
+* [broadband formum - Technical Reports](https://www.broadband-forum.org/standards-and-software/technical-specifications/technical-reports)

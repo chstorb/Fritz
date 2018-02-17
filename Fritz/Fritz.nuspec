@@ -10,8 +10,8 @@
     <projectUrl>https://github.com/chstorb/Fritz</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Initial create.</releaseNotes>
+    <releaseNotes>Bug fixes and design improvement.</releaseNotes>
     <copyright>Copyright © STC STORB Consulting 2018</copyright>
-    <tags>.net45</tags>
+    <tags>.net45 fritzbox tr064 telephony avm-fritz avm csharp</tags>
   </metadata>
 </package>

@@ -1,4 +1,4 @@
-#Fritz.NET
+# #Fritz.NET
 
 ## Description
 
@@ -22,7 +22,7 @@ FRITZ!Box free and open-source TR064 implementation.
             {
                 static void Main(string[] args)
                 {
-                    var fritzBox = new FritzBox()
+                    var fritzBox = new FritzClient()
                     {
                         UserName = "{YOUR_USERNAME}",
                         Password = "{YOUR_PASSWORD}"

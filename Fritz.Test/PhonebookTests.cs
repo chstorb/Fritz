@@ -1,9 +1,12 @@
 ﻿using Fritz.Serialization;
 using System;
 using System.Linq;
+using System.Web;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Fritz.Services;
 using System.Net;
+using System.Collections.Generic;
+using System.IO;
 
 namespace Fritz.Test
 {
@@ -65,41 +68,40 @@ namespace Fritz.Test
             var service = new Contact(_fb.Url);
             service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: _fb.UserName, password: _fb.Password);
 
-            UInt16 phonebookId = 0;
-            UInt16 phonebookEntryID = 0;
-            string phonebookEntryData;
-            service.GetPhonebookEntry(phonebookId, phonebookEntryID, out phonebookEntryData);
+            ushort phonebookId = 0;
+            uint phonebookEntryID = 0;
+            service.GetPhonebookEntry(phonebookId, phonebookEntryID, out string phonebookEntryData);
+
+            Console.WriteLine(phonebookEntryData);
         }
 
         [TestMethod]
-        public void TestSetPhonebookEntry()
+        public void TestAddOrUpdatePhonebookEntry()
         {
-            var service = new Contact(_fb.Url);
-            service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: _fb.UserName, password: _fb.Password);
+            _fb.AddOrUpdatePhonebookEntry(phonebookId: 0, uniqueId: 319, name: "Mustermann, Marianne", number: "+49 1234 55555", numberType: NumberType.Home);
+        }
+
+        [TestMethod]
+        public void TestImportPhonebookEntriesFromCsv()
+        {
+            var fileName = @"Telefonbuch.csv";
+
+            var list = FritzUtility.ReadCsvFile(fileName);
 
             ushort phonebookId = 0;
 
-            // Add new entries with "" as value for PhonebookEntryID.Change existing entries with a value used for 
-            // PhonebookEntryID with GetPhonebookEntry.The variable PhonebookEntryData may contain a unique ID.
-            uint phonebookEntryID = 0;
-            string phonebookEntryData = "<?xml version=\"1.0\" encoding=\"utf-8\"?>"
-                + "<contact>"
-                + "<category/>"
-                + "<person>"
-                + "<realName>Mustermann, Marianne</realName>"
-                + "</person>"
-                + "<telephony nid=\"1\">"
-                + "<number type=\"home\" id=\"0\" vanity=\"\" prio=\"1\">0123456789</number>"
-                + "</telephony>"
-                + "<services/>"
-                + "<setup>"
-                + "<ringTone/>"
-                + "</setup>"
-                + "<mod_time>1487852657</mod_time>"
-                + "<uniqueid></uniqueid>"
-                + "</contact>";
+            foreach (var item in list)
+            {
+                uint phonebookEntryID = 0;
 
-            service.SetPhonebookEntry(phonebookId, phonebookEntryID, phonebookEntryData);
+                if (!Enum.TryParse<NumberType>(item.Item5, out NumberType nmbrType)) nmbrType = NumberType.Home;
+                
+                if (!ushort.TryParse(item.Item1, out ushort ctgry)) ctgry = 0;                
+
+                _fb.AddOrUpdatePhonebookEntry(phonebookId: phonebookId, uniqueId: phonebookEntryID, name: item.Item3, number: item.Item4, numberType: nmbrType, category: ctgry);
+
+                phonebookEntryID++;
+            }
         }
 
         #region TestContext

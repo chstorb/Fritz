@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<contact>
+  <category>1</category>
+  <person>
+    <realName>Siciliani Diego</realName>
+    <imageURL>file:///var/InternerSpeicher/FRITZ/fonpix/1629231590-0.jpg</imageURL>
+  </person>
+  <telephony nid="3">
+    <number type="home" prio="1" id="0">+1 205 555 0108</number>
+    <number type="mobile" id="1">+1 205 555 0108</number>
+    <number type="work" id="2">+1 205 555 0108</number>
+  </telephony>
+  <services nid="1">
+    <email classifier="private" id="0">DiegoS@example.onmicrosoft.com</email>
+  </services>
+  <setup />
+  <features doorphone="0" />
+  <mod_time>1629231590</mod_time>
+  <uniqueid>215</uniqueid>
+</contact>

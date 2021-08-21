@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2027
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31613.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fritz", "Fritz\Fritz.csproj", "{0E745728-7799-45AB-ACFE-BE108DD8415C}"
 EndProject
@@ -9,6 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fritz.Test", "Fritz.Test\Fr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{50F84CB2-2025-45D5-9434-190CFB054D4E}"
 	ProjectSection(SolutionItems) = preProject
+		contact.xml = contact.xml
 		Fritz\CreateNuPkg.cmd = Fritz\CreateNuPkg.cmd
 		Fritz\CreateNuSpec.cmd = Fritz\CreateNuSpec.cmd
 		Fritz\Fritz.nuspec = Fritz\Fritz.nuspec

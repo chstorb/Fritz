@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -25,6 +26,17 @@ namespace Fritz.Serialization
             phonebooks pbooks = (phonebooks)ser.Deserialize(responseStream);
             responseStream.Close();
             return pbooks;
+        }
+
+        public static contact DeserializePhonebookEntry(string xml)
+        {
+            var serializer = new XmlSerializer(typeof(contact));
+            contact result;
+            using (TextReader reader = new StringReader(xml))
+            {
+                result = (contact)serializer.Deserialize(reader);
+            }
+            return result;
         }
     }
 }

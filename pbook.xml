@@ -1,49 +1,202 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <phonebooks>
-  <phonebook owner="0" name="Telefonbuch">
-    <!-- number of contacts 17 -->
+  <!-- id:1 , name: Test Phonebook -->
+  <phonebook owner="1" name="Test Phonebook">
+    <timestamp>1629231633</timestamp>
+    <!-- number of contacts 12 -->
     <contact>
-      <!-- numbers 1 -->
-      <category/>
+      <category>0</category>
       <person>
-        <realName>Alle (Rundruf)</realName>
+        <realName>All (Broadcast)</realName>
       </person>
+      <uniqueid>3</uniqueid>
       <telephony>
         <services>
-          <!-- emails 0 -->
         </services>
-        <number type="intern" quickdial="" vanity="" prio="0">**9</number>
+        <!-- numbers:1-->
+        <number type="intern" vanity="" prio="1" >**9</number>
+        <!-- idx:0 -->
+        <!-- ringtoneidx:nil -->
       </telephony>
-      <uniqueid>1232</uniqueid>
     </contact>
     <contact>
-      <!-- numbers 1 -->
-      <category/>
+      <category>0</category>
       <person>
-        <realName>FRITZ!App Fon Desire HD</realName>
+        <realName>Answering Machine</realName>
       </person>
+      <uniqueid>10</uniqueid>
       <telephony>
         <services>
-          <!-- emails 0 -->
         </services>
-        <number type="intern" quickdial="" vanity="" prio="0">**621</number>
+        <!-- numbers:2-->
+        <number type="intern" vanity="" prio="1" >**600</number>
+        <number type="memo" vanity="" prio="" >**605</number>
+        <!-- idx:1 -->
+        <!-- ringtoneidx:nil -->
       </telephony>
-      <uniqueid>1235</uniqueid>
     </contact>
     <contact>
-      <!-- numbers 1 -->
-      <category/>
+      <category>0</category>
       <person>
-        <realName>SRE</realName>
-        <imageURL>/download.lua?path=/var/media/ftp/JetFlash-Transcend4GB01/FRITZ/fonpix/1316705057-0.jpg</imageURL>
+        <realName>Workspace</realName>
       </person>
+      <uniqueid>103</uniqueid>
       <telephony>
         <services>
-          <!-- emails 0 -->
         </services>
-        <number type="work" quickdial="1" vanity="" prio="0" >03039976794</number>
+        <!-- numbers:1-->
+        <number type="intern" vanity="" prio="1" >**610</number>
+        <!-- idx:2 -->
+        <!-- ringtoneidx:nil -->
       </telephony>
-      <uniqueid>1234</uniqueid>
+    </contact>
+    <contact>
+      <category>0</category>
+      <person>
+        <realName>FRITZ!App Fon (Xiaomi Mi Mix 4)</realName>
+      </person>
+      <uniqueid>200</uniqueid>
+      <telephony>
+        <services>
+        </services>
+        <!-- numbers:1-->
+        <number type="intern" vanity="" prio="1" >**620</number>
+        <!-- idx:3 -->
+        <!-- ringtoneidx:nil -->
+      </telephony>
+    </contact>
+    <contact>
+      <category>0</category>
+      <person>
+        <realName>ISDN/DECT Broadcast</realName>
+      </person>
+      <uniqueid>4</uniqueid>
+      <telephony>
+        <services>
+        </services>
+        <!-- numbers:1-->
+        <number type="" vanity="" prio="1" >**50</number>
+        <!-- idx:4 -->
+        <!-- ringtoneidx:nil -->
+      </telephony>
+    </contact>
+    <contact>
+      <category>1</category>
+      <person>
+        <realName>Siciliani Diego</realName>
+        <imageURL>/download.lua?path=/var/InternerSpeicher/FRITZ/fonpix/1629231590-0.jpg</imageURL>
+      </person>
+      <uniqueid>215</uniqueid>
+      <telephony>
+        <services>
+          <!-- emails:1-->
+          <email classifier="private">DiegoS@example.onmicrosoft.com</email>
+        </services>
+        <!-- numbers:3-->
+        <number type="home" vanity="" prio="1" >+1 205 555 0108</number>
+        <number type="mobile" vanity="" prio="" >+1 205 555 0108</number>
+        <number type="work" vanity="" prio="" >+1 205 555 0108</number>
+        <!-- idx:0 -->
+        <!-- ringtoneidx:nil -->
+      </telephony>
+    </contact>
+    <contact>
+      <category>0</category>
+      <person>
+        <realName>Studio</realName>
+      </person>
+      <uniqueid>104</uniqueid>
+      <telephony>
+        <services>
+        </services>
+        <!-- numbers:1-->
+        <number type="intern" vanity="" prio="1" >**611</number>
+        <!-- idx:5 -->
+        <!-- ringtoneidx:nil -->
+      </telephony>
+    </contact>
+    <contact>
+      <category>1</category>
+      <person>
+        <realName>Vance Adele</realName>
+        <imageURL>/download.lua?path=/var/InternerSpeicher/FRITZ/fonpix/1629231633-0.jpg</imageURL>
+      </person>
+      <uniqueid>213</uniqueid>
+      <telephony>
+        <services>
+          <!-- emails:1-->
+          <email classifier="private">AdeleV@example.onmicrosoft.com</email>
+        </services>
+        <!-- numbers:2-->
+        <number type="home" vanity="" prio="1" >+1 425 555 0109</number>
+        <number type="work" vanity="" prio="" >+1 425 555 0109</number>
+        <!-- idx:1 -->
+        <!-- ringtoneidx:nil -->
+      </telephony>
+    </contact>
+    <contact>
+      <category>0</category>
+      <person>
+        <realName>Alarm 1</realName>
+      </person>
+      <uniqueid>5</uniqueid>
+      <telephony>
+        <services>
+        </services>
+        <!-- numbers:1-->
+        <number type="" vanity="" prio="1" >**41</number>
+        <!-- idx:6 -->
+        <!-- ringtoneidx:nil -->
+      </telephony>
+    </contact>
+    <contact>
+      <category>0</category>
+      <person>
+        <realName>Alarm 2</realName>
+      </person>
+      <uniqueid>6</uniqueid>
+      <telephony>
+        <services>
+        </services>
+        <!-- numbers:1-->
+        <number type="" vanity="" prio="1" >**42</number>
+        <!-- idx:7 -->
+        <!-- ringtoneidx:nil -->
+      </telephony>
+    </contact>
+    <contact>
+      <category>0</category>
+      <person>
+        <realName>Alarm 3</realName>
+      </person>
+      <uniqueid>7</uniqueid>
+      <telephony>
+        <services>
+        </services>
+        <!-- numbers:1-->
+        <number type="" vanity="" prio="1" >**43</number>
+        <!-- idx:8 -->
+        <!-- ringtoneidx:nil -->
+      </telephony>
+    </contact>
+    <contact>
+      <category>0</category>
+      <person>
+        <realName>Wilber Alex </realName>
+      </person>
+      <uniqueid>214</uniqueid>
+      <telephony>
+        <services>
+          <!-- emails:1-->
+          <email classifier="private">AlexW@example.onmicrosoft.com</email>
+        </services>
+        <!-- numbers:3-->
+        <number type="home" vanity="" prio="1" >+1 858 555 0110</number>
+        <number type="mobile" vanity="" prio="" >+1 858 555 0110</number>
+        <number type="work" vanity="" prio="" >+1 858 555 0110</number>
+        <!-- idx:2 -->
+        <!-- ringtoneidx:nil -->
+      </telephony>
     </contact>
   </phonebook>
 </phonebooks>

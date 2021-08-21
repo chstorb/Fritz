@@ -6,6 +6,7 @@
         <xs:element name="phonebook">
           <xs:complexType>
             <xs:sequence>
+              <xs:element name="timestamp" type="xs:string" minOccurs="0" msdata:Ordinal="0" />
               <xs:element name="contact" minOccurs="0" maxOccurs="unbounded">
                 <xs:complexType>
                   <xs:sequence>
@@ -22,13 +23,26 @@
                     <xs:element name="telephony" minOccurs="0" maxOccurs="unbounded">
                       <xs:complexType>
                         <xs:sequence>
-                          <xs:element name="services" type="xs:string" minOccurs="0" />
+                          <xs:element name="services" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="email" nillable="true" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:simpleContent msdata:ColumnName="email_Text" msdata:Ordinal="1">
+                                      <xs:extension base="xs:string">
+                                        <xs:attribute name="classifier" type="xs:string" />
+                                      </xs:extension>
+                                    </xs:simpleContent>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
                           <xs:element name="number" nillable="true" minOccurs="0" maxOccurs="unbounded">
                             <xs:complexType>
-                              <xs:simpleContent msdata:ColumnName="number_Text" msdata:Ordinal="4">
+                              <xs:simpleContent msdata:ColumnName="number_Text" msdata:Ordinal="3">
                                 <xs:extension base="xs:string">
                                   <xs:attribute name="type" type="xs:string" />
-                                  <xs:attribute name="quickdial" type="xs:string" />
                                   <xs:attribute name="vanity" type="xs:string" />
                                   <xs:attribute name="prio" type="xs:string" />
                                 </xs:extension>

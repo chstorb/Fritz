@@ -27,7 +27,7 @@ namespace Fritz.Test
         [TestMethod]
         public void TestAddPhonebook()
         {
-            _fb.AddPhonebook(name: "Test Phonebook");            
+            _fb.AddPhonebook(name: "Test Phonebook");
         }
 
         [TestMethod]
@@ -51,34 +51,112 @@ namespace Fritz.Test
         [TestMethod]
         public void TestGetPhonebook()
         {
-            phonebooksPhonebook phonebook = _fb.GetPhonebook("Telefonbuch");
+            const string PhoneBookName = "Test Phonebook";
+
+            var phonebook = _fb.GetPhonebook(name: PhoneBookName);
 
             Assert.IsNotNull(phonebook);
+            Assert.IsTrue(phonebook.contact.Count() > 0);
 
-            Console.WriteLine(phonebook.name);
-            foreach (phonebooksPhonebookContact contact in phonebook.contact)
+            foreach (var contact in phonebook.contact)
             {
-                Console.WriteLine($"{contact.uniqueid}\t{contact.person[0].realName}\t{contact.telephony[0].number[0].Value}");
+                string email = (contact.telephony[0].services != null && contact.telephony[0].services.Count() > 0)
+                    ? contact.telephony[0].services[0].Value
+                    : string.Empty;
+
+                Console.WriteLine($"{contact.uniqueid}\t{contact.person[0].realName}\t{contact.telephony[0].number[0].Value}\t{email}");
             }
         }
 
         [TestMethod]
         public void TestGetPhonebookEntry()
         {
-            var service = new Contact(_fb.Url);
-            service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: _fb.UserName, password: _fb.Password);
+            const string PhoneBookName = "Test Phonebook";
 
-            ushort phonebookId = 0;
-            uint phonebookEntryID = 0;
-            service.GetPhonebookEntry(phonebookId, phonebookEntryID, out string phonebookEntryData);
+            bool success = _fb.GetPhonebookId(name: PhoneBookName, out ushort phonebookId);
 
-            Console.WriteLine(phonebookEntryData);
+            Assert.AreEqual(true, success);
+
+            contact result = _fb.GetPhonebookEntry(phonebookId: phonebookId, phonebookEntryId: 0);
+
+            string name = result.person.realName;
+            string email = result.services.email.Value;
+
+            Assert.IsTrue(name.Length > 0);
+            Assert.IsTrue(email.Length > 0);
+        }
+
+        [TestMethod]
+        public void TestGetPhonebookEntryUID()
+        {
+            const string PhoneBookName = "Test Phonebook";
+
+            bool success = _fb.GetPhonebookId(name: PhoneBookName, out ushort phonebookId);
+
+            Assert.AreEqual(true, success);
+
+            contact result = _fb.GetPhonebookEntryUID(phonebookId: phonebookId, entryUniqueId: "222");
+
+            string name = result.person.realName;
+            string email = result.services.email.Value;
+
+            Assert.IsTrue(name.Length > 0);
+            Assert.IsTrue(email.Length > 0);
+        }
+
+        [TestMethod]
+        public void TestAddPhonebookEntry()
+        {
+            const string PhoneBookName = "Test Phonebook";
+
+            bool success = _fb.GetPhonebookId(name: PhoneBookName, out ushort phonebookId);
+
+            Assert.AreEqual(true, success);
+
+            string phonebookEntryUniqueID = _fb.AddPhonebookEntry(phonebookId: phonebookId,
+                name: "Siciliani Drago",
+                number: "+1 205 555 0108",
+                numberType: NumberType.Home,
+                category: 0,
+                email: "sid@example.onmicrosoft.com");
+
+            Console.WriteLine($"Unique ID: {phonebookEntryUniqueID}");
+        }
+
+        [TestMethod]
+        public void TestUpdatePhonebookEntry()
+        {
+            const string PhoneBookName = "Test Phonebook";
+
+            bool success = _fb.GetPhonebookId(name: PhoneBookName, out ushort phonebookId);
+
+            Assert.AreEqual(true, success);
+
+            _fb.UpdatePhonebookEntry(phonebookId: phonebookId,
+                uniqueId: "222",
+                name: "Siciliani Diego",
+                number: "+1 205 555 0108",
+                numberType: NumberType.Work,
+                category: 0,
+                email: "Diego.Siciliani@example.onmicrosoft.com"
+            );
         }
 
         [TestMethod]
         public void TestAddOrUpdatePhonebookEntry()
         {
-            _fb.AddOrUpdatePhonebookEntry(phonebookId: 0, uniqueId: 319, name: "Mustermann, Marianne", number: "+49 1234 55555", numberType: NumberType.Home);
+            const string PhoneBookName = "Test Phonebook";
+
+            bool success = _fb.GetPhonebookId(name: PhoneBookName, out ushort phonebookId);
+
+            Assert.AreEqual(true, success);
+
+            _fb.AddOrUpdatePhonebookEntry(phonebookId: phonebookId,
+                phonebookEntryID: 0,
+                uniqueId: 216,
+                name: "Siciliani Diego",
+                number: " + 1 205 555 0108",
+                numberType: NumberType.Work);
         }
 
         [TestMethod]
@@ -89,17 +167,16 @@ namespace Fritz.Test
             var list = FritzUtility.ReadCsvFile(fileName);
 
             ushort phonebookId = 0;
-
+            uint uniqueId = 0;
+            uint phonebookEntryID = 0;
             foreach (var item in list)
             {
-                uint phonebookEntryID = 0;
-
                 if (!Enum.TryParse<NumberType>(item.Item5, out NumberType nmbrType)) nmbrType = NumberType.Home;
-                
-                if (!ushort.TryParse(item.Item1, out ushort ctgry)) ctgry = 0;                
 
-                _fb.AddOrUpdatePhonebookEntry(phonebookId: phonebookId, uniqueId: phonebookEntryID, name: item.Item3, number: item.Item4, numberType: nmbrType, category: ctgry);
+                if (!ushort.TryParse(item.Item1, out ushort ctgry)) ctgry = 0;
 
+                _fb.AddOrUpdatePhonebookEntry(phonebookId: phonebookId, phonebookEntryID: phonebookEntryID, uniqueId: uniqueId, name: item.Item3, number: item.Item4, numberType: nmbrType, category: ctgry);
+                uniqueId++;
                 phonebookEntryID++;
             }
         }

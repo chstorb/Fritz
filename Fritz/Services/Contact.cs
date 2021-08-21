@@ -16,7 +16,7 @@ namespace Fritz.Services
     {
         #region SoapHttpClientProtocol
         [WebServiceBinding("urn:dslforum-org:service:X_AVM-DE_OnTel:1", Namespace = "http://schemas.xmlsoap.org/soap/envelope/")]
-        class x_contact : SoapHttpClientProtocol
+        private class x_contact : SoapHttpClientProtocol
         {            
             [SoapDocumentMethod("urn:dslforum-org:service:X_AVM-DE_OnTel:1#GetInfo", RequestNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1", ResponseNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1")]            
             public void GetInfo([XmlElement("NewEnable", Namespace="")]out boolean Enable, [XmlElement("NewStatus", Namespace="")]out string Status, [XmlElement("NewLastConnect", Namespace="")]out string LastConnect, [XmlElement("NewUrl", Namespace="")]out string Url, [XmlElement("NewServiceId", Namespace="")]out string ServiceId, [XmlElement("NewUsername", Namespace="")]out string Username, [XmlElement("NewName", Namespace="")]out string Name)
@@ -123,10 +123,24 @@ namespace Fritz.Services
                 PhonebookEntryData = (string)results[0];
             }
 
+            [SoapDocumentMethod("urn:dslforum-org:service:X_AVM-DE_OnTel:1#GetPhonebookEntryUID", RequestNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1", ResponseNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1")]
+            public void GetPhonebookEntryUID([XmlElement("NewPhonebookID", Namespace = "")] ui2 PhonebookID, [XmlElement("NewPhonebookEntryUniqueID", Namespace = "")] string PhonebookEntryUniqueID, [XmlElement("NewPhonebookEntryData", Namespace = "")] out string PhonebookEntryData)
+            {
+                object[] results = this.Invoke("GetPhonebookEntryUID", new object[] { PhonebookID, PhonebookEntryUniqueID });
+                PhonebookEntryData = (string)results[0];
+            }
+
             [SoapDocumentMethod("urn:dslforum-org:service:X_AVM-DE_OnTel:1#SetPhonebookEntry", OneWay=true, RequestNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1", ResponseNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1")]
             public void SetPhonebookEntry([XmlElement("NewPhonebookID", Namespace="")]ui2 PhonebookID, [XmlElement("NewPhonebookEntryID", Namespace="")]ui4 PhonebookEntryID, [XmlElement("NewPhonebookEntryData", Namespace="")]string PhonebookEntryData)
             {
                 this.Invoke("SetPhonebookEntry", new object[] { PhonebookID, PhonebookEntryID, PhonebookEntryData });
+            }
+
+            [SoapDocumentMethod("urn:dslforum-org:service:X_AVM-DE_OnTel:1#SetPhonebookEntryUID", RequestNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1", ResponseNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1")]
+            public void SetPhonebookEntryUID([XmlElement("NewPhonebookID", Namespace = "")] ui2 PhonebookID, [XmlElement("NewPhonebookEntryData", Namespace = "")] string PhonebookEntryData, [XmlElement("NewPhonebookEntryUniqueID", Namespace = "")] out string PhonebookEntryUniqueID)
+            {
+                object[] results = this.Invoke("SetPhonebookEntryUID", new object[] { PhonebookID, PhonebookEntryData });
+                PhonebookEntryUniqueID = (string)results[0];
             }
 
             [SoapDocumentMethod("urn:dslforum-org:service:X_AVM-DE_OnTel:1#DeletePhonebookEntry", OneWay=true, RequestNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1", ResponseNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1")]
@@ -269,8 +283,32 @@ namespace Fritz.Services
             ((x_contact)SoapHttpClientProtocol).GetPhonebookEntry(PhonebookID, PhonebookEntryID, out PhonebookEntryData);
         }
 
+        public void GetPhonebookEntryUID(ui2 PhonebookID, string EntryUniqueID, out string EntryData)
+        {
+            ((x_contact)SoapHttpClientProtocol).GetPhonebookEntryUID(PhonebookID, EntryUniqueID, out EntryData);
+        }
+
+        public void SetPhonebookEntryUID(ui2 PhonebookID, string PhonebookEntryData, out string PhonebookEntryUniqueID)
+        {
+            ((x_contact)SoapHttpClientProtocol).SetPhonebookEntryUID(PhonebookID, PhonebookEntryData, out PhonebookEntryUniqueID);
+        }
+
         /// <summary>
-        /// Add new entries with “” as value for PhonebookEntryID. Change existing entries with a value used for PhonebookEntryID with GetPhonebookEntry. The variable PhonebookEntryData may contain a unique ID.
+        /// Add new entries with “” as value for PhonebookEntryID. 
+        /// Change existing entries with a value used for PhonebookEntryID with GetPhonebookEntry. 
+        /// The variable PhonebookEntryData may contain a unique ID.
+        /// </summary>
+        /// <param name="PhonebookID"></param>
+        /// <param name="PhonebookEntryData"></param>
+        public void SetPhonebookEntry(ui2 PhonebookID, string PhonebookEntryData)
+        {
+            ((x_contact)SoapHttpClientProtocol).SetPhonebookEntry(PhonebookID, 0, PhonebookEntryData);
+        }
+
+        /// <summary>
+        /// Add new entries with “” as value for PhonebookEntryID. 
+        /// Change existing entries with a value used for PhonebookEntryID with GetPhonebookEntry. 
+        /// The variable PhonebookEntryData may contain a unique ID.
         /// </summary>
         /// <param name="PhonebookID"></param>
         /// <param name="PhonebookEntryID"></param>

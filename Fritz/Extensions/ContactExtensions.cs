@@ -41,6 +41,30 @@ namespace Fritz.Extensions
         }
 
         /// <summary>
+        /// Get phonebook id by phonebook name.
+        /// </summary>
+        /// <param name="service"></param>
+        /// <param name="name">The phonebook name, e.g. "Test Phonebook"</param>
+        /// <param name="phonebookId">Output</param>
+        /// <returns></returns>
+        public static bool GetPhonebookId(this Contact service, string name, out ushort phonebookId)
+        {
+            bool found = false;
+            phonebookId = 0;
+            foreach (ushort pid in service.GetPhonebookIdList())
+            {
+                service.GetPhonebook(pid, out string phonebookName, out string _, out string _);
+                if (phonebookName.Equals(name))
+                {
+                    phonebookId = pid;
+                    found = true;
+                    break;
+                }
+            }
+            return found;
+        }
+
+        /// <summary>
         /// Get list of phonebook ids.
         /// </summary>
         /// <param name="service"></param>

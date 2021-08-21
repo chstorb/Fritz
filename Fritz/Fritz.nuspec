@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>Bug fixes and design improvement.</releaseNotes>
-    <copyright>Copyright © STC STORB Consulting 2018</copyright>
+    <copyright>Copyright © STC STORB Consulting 2021</copyright>
     <tags>.net45 fritzbox tr064 telephony avm-fritz avm csharp</tags>
   </metadata>
 </package>

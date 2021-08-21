@@ -12,7 +12,7 @@ This is the FRITZ!Box free and open-source TR064 implementation.
 2. Create a new **Console App**
 3. Add the [Fritz NuGet package](https://www.nuget.org/packages/Fritz) to your project. 
 ```PowerShell
-       PM> Install-Package Fritz -Version 1.0.1
+       PM> Install-Package Fritz -Version 1.0.2
 ```
 4. Add the following code to the main method:
 ```Csharp

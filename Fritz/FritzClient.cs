@@ -35,8 +35,9 @@ namespace Fritz
         /// <param name="number"></param>
         /// <param name="numberType"></param>
         /// <param name="category"></param>
+        /// <param name="email"></param>
         /// <returns>The action returns the unique ID of the new or changed entry.</returns>
-        public string AddPhonebookEntry(ushort phonebookId, string name, string number, NumberType numberType, ushort category = 0, string email="")
+        public string AddPhonebookEntry(ushort phonebookId, string name, string number, NumberType numberType, ushort category = 0, string email = "")
         {
             var service = new Contact(Url);
             service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: UserName, password: Password);
@@ -77,7 +78,7 @@ namespace Fritz
         /// <param name="category"></param>
         /// <param name="email"></param>
         /// <returns>The action returns the unique ID of the changed entry.</returns>
-        public string UpdatePhonebookEntry(ushort phonebookId, string uniqueId, string name, string number, NumberType numberType, ushort category = 0, string email="")
+        public string UpdatePhonebookEntry(ushort phonebookId, string uniqueId, string name, string number, NumberType numberType, ushort category = 0, string email = "")
         {
             var service = new Contact(Url);
             service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: UserName, password: Password);
@@ -116,7 +117,8 @@ namespace Fritz
         /// <param name="number"></param>
         /// <param name="numberType"></param>
         /// <param name="category"></param>
-        public void AddOrUpdatePhonebookEntry(ushort phonebookId, uint phonebookEntryID, uint uniqueId, string name, string number, NumberType numberType, ushort category = 0)
+        /// <param name="email"></param>
+        public void AddOrUpdatePhonebookEntry(ushort phonebookId, uint phonebookEntryID, uint uniqueId, string name, string number, NumberType numberType, ushort category = 0, string email = "")
         {
             var service = new Contact(Url);
             service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: UserName, password: Password);
@@ -129,6 +131,10 @@ namespace Fritz
             data.Append($"<number type=\"{numberType.ToString("G").ToLower()}\" id=\"0\" vanity=\"\" prio=\"1\">{number}</number>");
             data.Append("</telephony>");
             data.Append("<services>");
+            if (!string.IsNullOrEmpty(email))
+            {
+                data.Append($@"<email classifier=""private"">{email}</email>");
+            }
             data.Append("</services>");
             data.Append("<setup><ringTone/></setup>");
             data.Append($"<mod_time>{DateTime.Now.Ticks}</mod_time>");

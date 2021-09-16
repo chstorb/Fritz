@@ -11,6 +11,7 @@ namespace Fritz
         Home = 0,
         Intern = 1,
         Mobile = 2,
-        Work = 3      
+        Work = 3,
+        Fax_Work = 4        
     }
 }

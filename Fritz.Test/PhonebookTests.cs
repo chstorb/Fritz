@@ -114,11 +114,15 @@ namespace Fritz.Test
             Assert.AreEqual(true, success);
 
             string phonebookEntryUniqueID = _fb.AddPhonebookEntry(phonebookId: phonebookId,
-                name: "Siciliani Drago",
-                number: "+1 205 555 0108",
-                numberType: NumberType.Home,
+                name: "Siciliani Sandro",
+                telephonyNumbers: new List<contactTelephonyNumber>() {
+                    new contactTelephonyNumber() { Value = "+1 205 555 0001", type = NumberType.Home.ToString("G") },                    
+                    new contactTelephonyNumber() { Value = "+1 205 555 0002", type = NumberType.Mobile.ToString("G") },
+                    new contactTelephonyNumber() { Value = "+1 205 555 0003", type = NumberType.Work.ToString("G") },
+                    new contactTelephonyNumber() { Value = "+1 205 555 0004", type = NumberType.Fax_Work.ToString("G") },
+                },
                 category: 0,
-                email: "sid@example.onmicrosoft.com");
+                email: "sad@example.onmicrosoft.com");
 
             Console.WriteLine($"Unique ID: {phonebookEntryUniqueID}");
         }
@@ -133,12 +137,16 @@ namespace Fritz.Test
             Assert.AreEqual(true, success);
 
             _fb.UpdatePhonebookEntry(phonebookId: phonebookId,
-                uniqueId: "222",
-                name: "Siciliani Diego",
-                number: "+1 205 555 0108",
-                numberType: NumberType.Work,
+                uniqueId: "226",
+                name: "Siciliani Sandro",
+                telephonyNumbers: new List<contactTelephonyNumber>() {
+                    new contactTelephonyNumber() { Value = "+1 205 555 0011", type = NumberType.Home.ToString("G") },
+                    new contactTelephonyNumber() { Value = "+1 205 555 0012", type = NumberType.Mobile.ToString("G") },
+                    new contactTelephonyNumber() { Value = "+1 205 555 0013", type = NumberType.Work.ToString("G") },
+                    new contactTelephonyNumber() { Value = "+1 205 555 0014", type = NumberType.Fax_Work.ToString("G") },
+                },
                 category: 0,
-                email: "Diego.Siciliani@example.onmicrosoft.com"
+                email: "Sandro.Siciliani@example.onmicrosoft.com"
             );
         }
 
@@ -153,10 +161,14 @@ namespace Fritz.Test
 
             _fb.AddOrUpdatePhonebookEntry(phonebookId: phonebookId,
                 phonebookEntryID: 0,
-                uniqueId: 216,
-                name: "Siciliani Diego",
-                number: " + 1 205 555 0108",
-                numberType: NumberType.Work);
+                uniqueId: 226,
+                name: "Siciliani Dodo",
+                telephonyNumbers: new List<contactTelephonyNumber>() {
+                    new contactTelephonyNumber() { Value = "+1 205 555 0041", type = NumberType.Home.ToString("G") },
+                    new contactTelephonyNumber() { Value = "+1 205 555 0042", type = NumberType.Mobile.ToString("G") },
+                    new contactTelephonyNumber() { Value = "+1 205 555 0043", type = NumberType.Work.ToString("G") },
+                    new contactTelephonyNumber() { Value = "+1 205 555 0044", type = NumberType.Fax_Work.ToString("G") },
+                });
         }
 
         [TestMethod]
@@ -175,7 +187,9 @@ namespace Fritz.Test
 
                 if (!ushort.TryParse(item.Item1, out ushort ctgry)) ctgry = 0;
 
-                _fb.AddOrUpdatePhonebookEntry(phonebookId: phonebookId, phonebookEntryID: phonebookEntryID, uniqueId: uniqueId, name: item.Item3, number: item.Item4, numberType: nmbrType, category: ctgry);
+                _fb.AddOrUpdatePhonebookEntry(phonebookId: phonebookId, phonebookEntryID: phonebookEntryID, uniqueId: uniqueId, name: item.Item3, 
+                    telephonyNumbers: new List<contactTelephonyNumber>() { new contactTelephonyNumber() { Value = item.Item4, type = nmbrType.ToString("G") } }, 
+                    category: ctgry);
                 uniqueId++;
                 phonebookEntryID++;
             }

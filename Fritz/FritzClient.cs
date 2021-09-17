@@ -32,12 +32,12 @@ namespace Fritz
         /// </summary>
         /// <param name="phonebookId"></param>
         /// <param name="name"></param>
-        /// <param name="number"></param>
-        /// <param name="numberType"></param>
+        /// <param name="telephonyNumbers">List of telephony numbers.</param>
         /// <param name="category"></param>
         /// <param name="email"></param>
         /// <returns>The action returns the unique ID of the new or changed entry.</returns>
-        public string AddPhonebookEntry(ushort phonebookId, string name, string number, NumberType numberType, ushort category = 0, string email = "")
+        //public string AddPhonebookEntry(ushort phonebookId, string name, string number, NumberType numberType, ushort category = 0, string email = "")
+        public string AddPhonebookEntry(ushort phonebookId, string name, List<contactTelephonyNumber> telephonyNumbers, ushort category = 0, string email = "")
         {
             var service = new Contact(Url);
             service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: UserName, password: Password);
@@ -47,7 +47,13 @@ namespace Fritz
             data.Append($"<category>{category}</category>");
             data.Append($"<person><realName>{FritzUtility.Encode(name)}</realName></person>");
             data.Append($"<telephony nid=\"0\">");
-            data.Append($"<number type=\"{numberType.ToString("G").ToLower()}\" id=\"0\" vanity=\"\" prio=\"1\">{number}</number>");
+            if (telephonyNumbers != null)
+            {
+                foreach (var telephonyNumber in telephonyNumbers)
+                {
+                    data.Append($"<number type=\"{telephonyNumber.type.ToLower()}\" id=\"0\" vanity=\"\" prio=\"1\">{telephonyNumber.Value}</number>");
+                }
+            }
             data.Append("</telephony>");
             data.Append("<services>");
             if (!string.IsNullOrEmpty(email))
@@ -73,12 +79,11 @@ namespace Fritz
         /// <param name="phonebookId"></param>
         /// <param name="uniqueId"></param>
         /// <param name="name"></param>
-        /// <param name="number"></param>
-        /// <param name="numberType"></param>
+        /// <param name="telephonyNumbers">List of telephony numbers.</param>
         /// <param name="category"></param>
         /// <param name="email"></param>
         /// <returns>The action returns the unique ID of the changed entry.</returns>
-        public string UpdatePhonebookEntry(ushort phonebookId, string uniqueId, string name, string number, NumberType numberType, ushort category = 0, string email = "")
+        public string UpdatePhonebookEntry(ushort phonebookId, string uniqueId, string name, List<contactTelephonyNumber> telephonyNumbers, ushort category = 0, string email = "")
         {
             var service = new Contact(Url);
             service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: UserName, password: Password);
@@ -88,7 +93,13 @@ namespace Fritz
             data.Append($"<category>{category}</category>");
             data.Append($"<person><realName>{FritzUtility.Encode(name)}</realName></person>");
             data.Append($"<telephony nid=\"0\">");
-            data.Append($"<number type=\"{numberType.ToString("G").ToLower()}\" id=\"0\" vanity=\"\" prio=\"1\">{number}</number>");
+            if (telephonyNumbers != null)
+            {
+                foreach (var telephonyNumber in telephonyNumbers)
+                {
+                    data.Append($"<number type=\"{telephonyNumber.type.ToLower()}\" id=\"0\" vanity=\"\" prio=\"1\">{telephonyNumber.Value}</number>");
+                }
+            }
             data.Append("</telephony>");
             data.Append("<services>");
             if (!string.IsNullOrEmpty(email))
@@ -114,11 +125,10 @@ namespace Fritz
         /// <param name="phonebookEntryID"></param>
         /// <param name="uniqueId"></param>
         /// <param name="name"></param>
-        /// <param name="number"></param>
-        /// <param name="numberType"></param>
+        /// <param name="telephonyNumbers">List of telephony numbers.</param>
         /// <param name="category"></param>
         /// <param name="email"></param>
-        public void AddOrUpdatePhonebookEntry(ushort phonebookId, uint phonebookEntryID, uint uniqueId, string name, string number, NumberType numberType, ushort category = 0, string email = "")
+        public void AddOrUpdatePhonebookEntry(ushort phonebookId, uint phonebookEntryID, uint uniqueId, string name, List<contactTelephonyNumber> telephonyNumbers, ushort category = 0, string email = "")
         {
             var service = new Contact(Url);
             service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: UserName, password: Password);
@@ -128,7 +138,13 @@ namespace Fritz
             data.Append($"<category>{category}</category>");
             data.Append($"<person><realName>{FritzUtility.Encode(name)}</realName></person>");
             data.Append($"<telephony nid=\"0\">");
-            data.Append($"<number type=\"{numberType.ToString("G").ToLower()}\" id=\"0\" vanity=\"\" prio=\"1\">{number}</number>");
+            if (telephonyNumbers != null)
+            {
+                foreach (var telephonyNumber in telephonyNumbers)
+                {
+                    data.Append($"<number type=\"{telephonyNumber.type.ToLower()}\" id=\"0\" vanity=\"\" prio=\"1\">{telephonyNumber.Value}</number>");
+                }
+            }
             data.Append("</telephony>");
             data.Append("<services>");
             if (!string.IsNullOrEmpty(email))

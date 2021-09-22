@@ -160,6 +160,13 @@ namespace Fritz
             service.SetPhonebookEntry(phonebookId, phonebookEntryID, data.ToString());
         }
 
+        public void DeletePhonebookEntryUID(ushort phonebookId, string uniqueId)
+        {
+            var service = new Contact(Url);
+            service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: UserName, password: Password);
+            service.DeletePhonebookEntryUID(phonebookId, uniqueId);
+        }
+
         /// <summary>
         /// Get a phonebook entry.
         /// </summary>

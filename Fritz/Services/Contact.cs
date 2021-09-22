@@ -2,26 +2,23 @@ using System;
 using System.Web.Services;
 using System.Web.Services.Protocols;
 using System.Xml.Serialization;
-using i4 = System.UInt32;
-using ui1 = System.Byte;
+using boolean = System.Boolean;
 using ui2 = System.UInt16;
 using ui4 = System.UInt32;
-using boolean = System.Boolean;
-using uuid = System.String;
-using dateTime = System.DateTime;
 
 namespace Fritz.Services
 {
     public class Contact
     {
         #region SoapHttpClientProtocol
+
         [WebServiceBinding("urn:dslforum-org:service:X_AVM-DE_OnTel:1", Namespace = "http://schemas.xmlsoap.org/soap/envelope/")]
         private class x_contact : SoapHttpClientProtocol
-        {            
-            [SoapDocumentMethod("urn:dslforum-org:service:X_AVM-DE_OnTel:1#GetInfo", RequestNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1", ResponseNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1")]            
-            public void GetInfo([XmlElement("NewEnable", Namespace="")]out boolean Enable, [XmlElement("NewStatus", Namespace="")]out string Status, [XmlElement("NewLastConnect", Namespace="")]out string LastConnect, [XmlElement("NewUrl", Namespace="")]out string Url, [XmlElement("NewServiceId", Namespace="")]out string ServiceId, [XmlElement("NewUsername", Namespace="")]out string Username, [XmlElement("NewName", Namespace="")]out string Name)
+        {
+            [SoapDocumentMethod("urn:dslforum-org:service:X_AVM-DE_OnTel:1#GetInfo", RequestNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1", ResponseNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1")]
+            public void GetInfo([XmlElement("NewEnable", Namespace = "")] out boolean Enable, [XmlElement("NewStatus", Namespace = "")] out string Status, [XmlElement("NewLastConnect", Namespace = "")] out string LastConnect, [XmlElement("NewUrl", Namespace = "")] out string Url, [XmlElement("NewServiceId", Namespace = "")] out string ServiceId, [XmlElement("NewUsername", Namespace = "")] out string Username, [XmlElement("NewName", Namespace = "")] out string Name)
             {
-                object[] results = this.Invoke("GetInfo", new object[] {  });
+                object[] results = this.Invoke("GetInfo", new object[] { });
                 Enable = (boolean)results[0];
                 Status = (string)results[1];
                 LastConnect = (string)results[2];
@@ -30,21 +27,21 @@ namespace Fritz.Services
                 Username = (string)results[5];
                 Name = (string)results[6];
             }
-                        
-            [SoapDocumentMethod("urn:dslforum-org:service:X_AVM-DE_OnTel:1#SetEnable", OneWay=true, RequestNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1", ResponseNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1")]
-            public void SetEnable([XmlElement("NewEnable", Namespace="")]boolean Enable)
+
+            [SoapDocumentMethod("urn:dslforum-org:service:X_AVM-DE_OnTel:1#SetEnable", OneWay = true, RequestNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1", ResponseNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1")]
+            public void SetEnable([XmlElement("NewEnable", Namespace = "")] boolean Enable)
             {
                 this.Invoke("SetEnable", new object[] { Enable });
             }
-                        
-            [SoapDocumentMethod("urn:dslforum-org:service:X_AVM-DE_OnTel:1#SetConfig", OneWay=true, RequestNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1", ResponseNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1")]
-            public void SetConfig([XmlElement("NewEnable", Namespace="")]boolean Enable, [XmlElement("NewUrl", Namespace="")]string Url, [XmlElement("NewServiceId", Namespace="")]string ServiceId, [XmlElement("NewUsername", Namespace="")]string Username, [XmlElement("NewPassword", Namespace="")]string Password, [XmlElement("NewName", Namespace="")]string Name)
+
+            [SoapDocumentMethod("urn:dslforum-org:service:X_AVM-DE_OnTel:1#SetConfig", OneWay = true, RequestNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1", ResponseNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1")]
+            public void SetConfig([XmlElement("NewEnable", Namespace = "")] boolean Enable, [XmlElement("NewUrl", Namespace = "")] string Url, [XmlElement("NewServiceId", Namespace = "")] string ServiceId, [XmlElement("NewUsername", Namespace = "")] string Username, [XmlElement("NewPassword", Namespace = "")] string Password, [XmlElement("NewName", Namespace = "")] string Name)
             {
                 this.Invoke("SetConfig", new object[] { Enable, Url, ServiceId, Username, Password, Name });
             }
 
             [SoapDocumentMethod("urn:dslforum-org:service:X_AVM-DE_OnTel:1#GetInfoByIndex", RequestNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1", ResponseNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1")]
-            public void GetInfoByIndex([XmlElement("NewIndex", Namespace="")]ui2 Index, [XmlElement("NewEnable", Namespace="")]out boolean Enable, [XmlElement("NewStatus", Namespace="")]out string Status, [XmlElement("NewLastConnect", Namespace="")]out string LastConnect, [XmlElement("NewUrl", Namespace="")]out string Url, [XmlElement("NewServiceId", Namespace="")]out string ServiceId, [XmlElement("NewUsername", Namespace="")]out string Username, [XmlElement("NewName", Namespace="")]out string Name)
+            public void GetInfoByIndex([XmlElement("NewIndex", Namespace = "")] ui2 Index, [XmlElement("NewEnable", Namespace = "")] out boolean Enable, [XmlElement("NewStatus", Namespace = "")] out string Status, [XmlElement("NewLastConnect", Namespace = "")] out string LastConnect, [XmlElement("NewUrl", Namespace = "")] out string Url, [XmlElement("NewServiceId", Namespace = "")] out string ServiceId, [XmlElement("NewUsername", Namespace = "")] out string Username, [XmlElement("NewName", Namespace = "")] out string Name)
             {
                 object[] results = this.Invoke("GetInfoByIndex", new object[] { Index });
                 Enable = (boolean)results[0];
@@ -56,47 +53,47 @@ namespace Fritz.Services
                 Name = (string)results[6];
             }
 
-            [SoapDocumentMethod("urn:dslforum-org:service:X_AVM-DE_OnTel:1#SetEnableByIndex", OneWay=true, RequestNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1", ResponseNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1")]
-            public void SetEnableByIndex([XmlElement("NewIndex", Namespace="")]ui2 Index, [XmlElement("NewEnable", Namespace="")]boolean Enable)
+            [SoapDocumentMethod("urn:dslforum-org:service:X_AVM-DE_OnTel:1#SetEnableByIndex", OneWay = true, RequestNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1", ResponseNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1")]
+            public void SetEnableByIndex([XmlElement("NewIndex", Namespace = "")] ui2 Index, [XmlElement("NewEnable", Namespace = "")] boolean Enable)
             {
                 this.Invoke("SetEnableByIndex", new object[] { Index, Enable });
             }
 
-            [SoapDocumentMethod("urn:dslforum-org:service:X_AVM-DE_OnTel:1#SetConfigByIndex", OneWay=true, RequestNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1", ResponseNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1")]
-            public void SetConfigByIndex([XmlElement("NewIndex", Namespace="")]ui2 Index, [XmlElement("NewEnable", Namespace="")]boolean Enable, [XmlElement("NewUrl", Namespace="")]string Url, [XmlElement("NewServiceId", Namespace="")]string ServiceId, [XmlElement("NewUsername", Namespace="")]string Username, [XmlElement("NewPassword", Namespace="")]string Password, [XmlElement("NewName", Namespace="")]string Name)
+            [SoapDocumentMethod("urn:dslforum-org:service:X_AVM-DE_OnTel:1#SetConfigByIndex", OneWay = true, RequestNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1", ResponseNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1")]
+            public void SetConfigByIndex([XmlElement("NewIndex", Namespace = "")] ui2 Index, [XmlElement("NewEnable", Namespace = "")] boolean Enable, [XmlElement("NewUrl", Namespace = "")] string Url, [XmlElement("NewServiceId", Namespace = "")] string ServiceId, [XmlElement("NewUsername", Namespace = "")] string Username, [XmlElement("NewPassword", Namespace = "")] string Password, [XmlElement("NewName", Namespace = "")] string Name)
             {
                 this.Invoke("SetConfigByIndex", new object[] { Index, Enable, Url, ServiceId, Username, Password, Name });
             }
 
-            [SoapDocumentMethod("urn:dslforum-org:service:X_AVM-DE_OnTel:1#DeleteByIndex", OneWay=true, RequestNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1", ResponseNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1")]
-            public void DeleteByIndex([XmlElement("NewIndex", Namespace="")]ui2 Index)
+            [SoapDocumentMethod("urn:dslforum-org:service:X_AVM-DE_OnTel:1#DeleteByIndex", OneWay = true, RequestNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1", ResponseNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1")]
+            public void DeleteByIndex([XmlElement("NewIndex", Namespace = "")] ui2 Index)
             {
                 this.Invoke("DeleteByIndex", new object[] { Index });
             }
 
             [SoapDocumentMethod("urn:dslforum-org:service:X_AVM-DE_OnTel:1#GetNumberOfEntries", RequestNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1", ResponseNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1")]
-            public void GetNumberOfEntries([XmlElement("NewOnTelNumberOfEntries", Namespace="")]out ui2 OnTelNumberOfEntries)
+            public void GetNumberOfEntries([XmlElement("NewOnTelNumberOfEntries", Namespace = "")] out ui2 OnTelNumberOfEntries)
             {
-                object[] results = this.Invoke("GetNumberOfEntries", new object[] {  });
+                object[] results = this.Invoke("GetNumberOfEntries", new object[] { });
                 OnTelNumberOfEntries = (ui2)results[0];
             }
 
             [SoapDocumentMethod("urn:dslforum-org:service:X_AVM-DE_OnTel:1#GetCallList", RequestNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1", ResponseNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1")]
-            public void GetCallList([XmlElement("NewCallListURL", Namespace="")]out string CallListURL)
+            public void GetCallList([XmlElement("NewCallListURL", Namespace = "")] out string CallListURL)
             {
-                object[] results = this.Invoke("GetCallList", new object[] {  });
+                object[] results = this.Invoke("GetCallList", new object[] { });
                 CallListURL = (string)results[0];
             }
 
             [SoapDocumentMethod("urn:dslforum-org:service:X_AVM-DE_OnTel:1#GetPhonebookList", RequestNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1", ResponseNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1")]
-            public void GetPhonebookList([XmlElement("NewPhonebookList", Namespace="")]out string PhonebookList)
+            public void GetPhonebookList([XmlElement("NewPhonebookList", Namespace = "")] out string PhonebookList)
             {
-                object[] results = this.Invoke("GetPhonebookList", new object[] {  });
+                object[] results = this.Invoke("GetPhonebookList", new object[] { });
                 PhonebookList = (string)results[0];
             }
 
             [SoapDocumentMethod("urn:dslforum-org:service:X_AVM-DE_OnTel:1#GetPhonebook", RequestNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1", ResponseNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1")]
-            public void GetPhonebook([XmlElement("NewPhonebookID", Namespace="")]ui2 PhonebookID, [XmlElement("NewPhonebookName", Namespace="")]out string PhonebookName, [XmlElement("NewPhonebookExtraID", Namespace="")]out string PhonebookExtraID, [XmlElement("NewPhonebookURL", Namespace="")]out string PhonebookURL)
+            public void GetPhonebook([XmlElement("NewPhonebookID", Namespace = "")] ui2 PhonebookID, [XmlElement("NewPhonebookName", Namespace = "")] out string PhonebookName, [XmlElement("NewPhonebookExtraID", Namespace = "")] out string PhonebookExtraID, [XmlElement("NewPhonebookURL", Namespace = "")] out string PhonebookURL)
             {
                 object[] results = this.Invoke("GetPhonebook", new object[] { PhonebookID });
                 PhonebookName = (string)results[0];
@@ -104,20 +101,20 @@ namespace Fritz.Services
                 PhonebookURL = (string)results[2];
             }
 
-            [SoapDocumentMethod("urn:dslforum-org:service:X_AVM-DE_OnTel:1#AddPhonebook", OneWay=true, RequestNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1", ResponseNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1")]
-            public void AddPhonebook([XmlElement("NewPhonebookExtraID", Namespace="")]string PhonebookExtraID, [XmlElement("NewPhonebookName", Namespace="")]string PhonebookName)
+            [SoapDocumentMethod("urn:dslforum-org:service:X_AVM-DE_OnTel:1#AddPhonebook", OneWay = true, RequestNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1", ResponseNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1")]
+            public void AddPhonebook([XmlElement("NewPhonebookExtraID", Namespace = "")] string PhonebookExtraID, [XmlElement("NewPhonebookName", Namespace = "")] string PhonebookName)
             {
                 this.Invoke("AddPhonebook", new object[] { PhonebookExtraID, PhonebookName });
             }
 
-            [SoapDocumentMethod("urn:dslforum-org:service:X_AVM-DE_OnTel:1#DeletePhonebook", OneWay=true, RequestNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1", ResponseNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1")]
-            public void DeletePhonebook([XmlElement("NewPhonebookID", Namespace="")]ui2 PhonebookID, [XmlElement("NewPhonebookExtraID", Namespace="")]string PhonebookExtraID)
+            [SoapDocumentMethod("urn:dslforum-org:service:X_AVM-DE_OnTel:1#DeletePhonebook", OneWay = true, RequestNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1", ResponseNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1")]
+            public void DeletePhonebook([XmlElement("NewPhonebookID", Namespace = "")] ui2 PhonebookID, [XmlElement("NewPhonebookExtraID", Namespace = "")] string PhonebookExtraID)
             {
                 this.Invoke("DeletePhonebook", new object[] { PhonebookID, PhonebookExtraID });
             }
 
             [SoapDocumentMethod("urn:dslforum-org:service:X_AVM-DE_OnTel:1#GetPhonebookEntry", RequestNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1", ResponseNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1")]
-            public void GetPhonebookEntry([XmlElement("NewPhonebookID", Namespace="")]ui2 PhonebookID, [XmlElement("NewPhonebookEntryID", Namespace="")]ui4 PhonebookEntryID, [XmlElement("NewPhonebookEntryData", Namespace="")]out string PhonebookEntryData)
+            public void GetPhonebookEntry([XmlElement("NewPhonebookID", Namespace = "")] ui2 PhonebookID, [XmlElement("NewPhonebookEntryID", Namespace = "")] ui4 PhonebookEntryID, [XmlElement("NewPhonebookEntryData", Namespace = "")] out string PhonebookEntryData)
             {
                 object[] results = this.Invoke("GetPhonebookEntry", new object[] { PhonebookID, PhonebookEntryID });
                 PhonebookEntryData = (string)results[0];
@@ -130,8 +127,8 @@ namespace Fritz.Services
                 PhonebookEntryData = (string)results[0];
             }
 
-            [SoapDocumentMethod("urn:dslforum-org:service:X_AVM-DE_OnTel:1#SetPhonebookEntry", OneWay=true, RequestNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1", ResponseNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1")]
-            public void SetPhonebookEntry([XmlElement("NewPhonebookID", Namespace="")]ui2 PhonebookID, [XmlElement("NewPhonebookEntryID", Namespace="")]ui4 PhonebookEntryID, [XmlElement("NewPhonebookEntryData", Namespace="")]string PhonebookEntryData)
+            [SoapDocumentMethod("urn:dslforum-org:service:X_AVM-DE_OnTel:1#SetPhonebookEntry", OneWay = true, RequestNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1", ResponseNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1")]
+            public void SetPhonebookEntry([XmlElement("NewPhonebookID", Namespace = "")] ui2 PhonebookID, [XmlElement("NewPhonebookEntryID", Namespace = "")] ui4 PhonebookEntryID, [XmlElement("NewPhonebookEntryData", Namespace = "")] string PhonebookEntryData)
             {
                 this.Invoke("SetPhonebookEntry", new object[] { PhonebookID, PhonebookEntryID, PhonebookEntryData });
             }
@@ -143,29 +140,35 @@ namespace Fritz.Services
                 PhonebookEntryUniqueID = (string)results[0];
             }
 
-            [SoapDocumentMethod("urn:dslforum-org:service:X_AVM-DE_OnTel:1#DeletePhonebookEntry", OneWay=true, RequestNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1", ResponseNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1")]
-            public void DeletePhonebookEntry([XmlElement("NewPhonebookID", Namespace="")]ui2 PhonebookID, [XmlElement("NewPhonebookEntryID", Namespace="")]ui4 PhonebookEntryID)
+            [SoapDocumentMethod("urn:dslforum-org:service:X_AVM-DE_OnTel:1#DeletePhonebookEntry", OneWay = true, RequestNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1", ResponseNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1")]
+            public void DeletePhonebookEntry([XmlElement("NewPhonebookID", Namespace = "")] ui2 PhonebookID, [XmlElement("NewPhonebookEntryID", Namespace = "")] ui4 PhonebookEntryID)
             {
                 this.Invoke("DeletePhonebookEntry", new object[] { PhonebookID, PhonebookEntryID });
             }
 
-            [SoapDocumentMethod("urn:dslforum-org:service:X_AVM-DE_OnTel:1#GetDECTHandsetList", RequestNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1", ResponseNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1")]
-            public void GetDECTHandsetList([XmlElement("NewDectIDList", Namespace="")]out string DectIDList)
+            [SoapDocumentMethod("urn:dslforum-org:service:X_AVM-DE_OnTel:1#DeletePhonebookEntryUID", RequestNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1", ResponseNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1")]
+            public void DeletePhonebookEntryUID([XmlElement("NewPhonebookID", Namespace = "")] ui2 PhonebookID, [XmlElement("NewPhonebookEntryUniqueID", Namespace = "")] string PhonebookEntryUniqueID)
             {
-                object[] results = this.Invoke("GetDECTHandsetList", new object[] {  });
+                this.Invoke("DeletePhonebookEntryUID", new object[] { PhonebookID, PhonebookEntryUniqueID });
+            }
+
+            [SoapDocumentMethod("urn:dslforum-org:service:X_AVM-DE_OnTel:1#GetDECTHandsetList", RequestNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1", ResponseNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1")]
+            public void GetDECTHandsetList([XmlElement("NewDectIDList", Namespace = "")] out string DectIDList)
+            {
+                object[] results = this.Invoke("GetDECTHandsetList", new object[] { });
                 DectIDList = (string)results[0];
             }
 
             [SoapDocumentMethod("urn:dslforum-org:service:X_AVM-DE_OnTel:1#GetDECTHandsetInfo", RequestNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1", ResponseNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1")]
-            public void GetDECTHandsetInfo([XmlElement("NewDectID", Namespace="")]ui2 DectID, [XmlElement("NewHandsetName", Namespace="")]out string HandsetName, [XmlElement("NewPhonebookID", Namespace="")]out ui2 PhonebookID)
+            public void GetDECTHandsetInfo([XmlElement("NewDectID", Namespace = "")] ui2 DectID, [XmlElement("NewHandsetName", Namespace = "")] out string HandsetName, [XmlElement("NewPhonebookID", Namespace = "")] out ui2 PhonebookID)
             {
                 object[] results = this.Invoke("GetDECTHandsetInfo", new object[] { DectID });
                 HandsetName = (string)results[0];
                 PhonebookID = (ui2)results[1];
             }
 
-            [SoapDocumentMethod("urn:dslforum-org:service:X_AVM-DE_OnTel:1#SetDECTHandsetPhonebook", OneWay=true, RequestNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1", ResponseNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1")]
-            public void SetDECTHandsetPhonebook([XmlElement("NewDectID", Namespace="")]ui2 DectID, [XmlElement("NewPhonebookID", Namespace="")]ui2 PhonebookID)
+            [SoapDocumentMethod("urn:dslforum-org:service:X_AVM-DE_OnTel:1#SetDECTHandsetPhonebook", OneWay = true, RequestNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1", ResponseNamespace = "urn:dslforum-org:service:X_AVM-DE_OnTel:1")]
+            public void SetDECTHandsetPhonebook([XmlElement("NewDectID", Namespace = "")] ui2 DectID, [XmlElement("NewPhonebookID", Namespace = "")] ui2 PhonebookID)
             {
                 this.Invoke("SetDECTHandsetPhonebook", new object[] { DectID, PhonebookID });
             }
@@ -321,6 +324,11 @@ namespace Fritz.Services
         public void DeletePhonebookEntry(ui2 PhonebookID, ui4 PhonebookEntryID)
         {
             ((x_contact)SoapHttpClientProtocol).DeletePhonebookEntry(PhonebookID, PhonebookEntryID);
+        }
+
+        public void DeletePhonebookEntryUID(ui2 PhonebookID, string PhonebookEntryUniqueID)
+        {
+            ((x_contact)SoapHttpClientProtocol).DeletePhonebookEntryUID(PhonebookID, PhonebookEntryUniqueID);
         }
 
         public void GetDECTHandsetList(out string DectIDList)

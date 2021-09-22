@@ -1,8 +1,8 @@
-﻿using Fritz.Services;
-using Fritz.Extensions;
+﻿using Fritz.Extensions;
+using Fritz.Serialization;
+using Fritz.Services;
 using System;
 using System.Net;
-using Fritz.Serialization;
 
 namespace Fritz
 {
@@ -77,7 +77,7 @@ namespace Fritz
         {
             var service = new Deviceconfig(Url);
             service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: UserName, password: Password);
-            service.Reboot(); 
+            service.Reboot();
         }
 
         #endregion
@@ -89,7 +89,7 @@ namespace Fritz
         /// </summary>
         /// <param name="name">phonebook name</param>
         /// <param name="extraId">phonebook extra id (optional)</param>        
-        public void AddPhonebook(string name, string extraId="")
+        public void AddPhonebook(string name, string extraId = "")
         {
             var service = new Contact(Url);
             service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: UserName, password: Password);

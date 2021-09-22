@@ -1,12 +1,8 @@
 ﻿using Fritz.Serialization;
-using System;
-using System.Linq;
-using System.Web;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Fritz.Services;
-using System.Net;
+using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Linq;
 
 namespace Fritz.Test
 {
@@ -75,15 +71,14 @@ namespace Fritz.Test
 
             bool success = _fb.GetPhonebookId(name: PhoneBookName, out ushort phonebookId);
 
-            Assert.AreEqual(true, success);
+            Assert.IsTrue(success);
 
             contact result = _fb.GetPhonebookEntry(phonebookId: phonebookId, phonebookEntryId: 0);
 
             string name = result.person.realName;
-            string email = result.services.email.Value;
+            string email = result.services.email?.Value ?? string.Empty;
 
             Assert.IsTrue(name.Length > 0);
-            Assert.IsTrue(email.Length > 0);
         }
 
         [TestMethod]
@@ -93,15 +88,14 @@ namespace Fritz.Test
 
             bool success = _fb.GetPhonebookId(name: PhoneBookName, out ushort phonebookId);
 
-            Assert.AreEqual(true, success);
+            Assert.IsTrue(success);
 
             contact result = _fb.GetPhonebookEntryUID(phonebookId: phonebookId, entryUniqueId: "222");
 
             string name = result.person.realName;
-            string email = result.services.email.Value;
+            string email = result.services.email?.Value ?? string.Empty;
 
             Assert.IsTrue(name.Length > 0);
-            Assert.IsTrue(email.Length > 0);
         }
 
         [TestMethod]
@@ -111,12 +105,12 @@ namespace Fritz.Test
 
             bool success = _fb.GetPhonebookId(name: PhoneBookName, out ushort phonebookId);
 
-            Assert.AreEqual(true, success);
+            Assert.IsTrue(success);
 
             string phonebookEntryUniqueID = _fb.AddPhonebookEntry(phonebookId: phonebookId,
                 name: "Siciliani Sandro",
                 telephonyNumbers: new List<contactTelephonyNumber>() {
-                    new contactTelephonyNumber() { Value = "+1 205 555 0001", type = NumberType.Home.ToString("G") },                    
+                    new contactTelephonyNumber() { Value = "+1 205 555 0001", type = NumberType.Home.ToString("G") },
                     new contactTelephonyNumber() { Value = "+1 205 555 0002", type = NumberType.Mobile.ToString("G") },
                     new contactTelephonyNumber() { Value = "+1 205 555 0003", type = NumberType.Work.ToString("G") },
                     new contactTelephonyNumber() { Value = "+1 205 555 0004", type = NumberType.Fax_Work.ToString("G") },
@@ -134,7 +128,7 @@ namespace Fritz.Test
 
             bool success = _fb.GetPhonebookId(name: PhoneBookName, out ushort phonebookId);
 
-            Assert.AreEqual(true, success);
+            Assert.IsTrue(success);
 
             _fb.UpdatePhonebookEntry(phonebookId: phonebookId,
                 uniqueId: "226",
@@ -157,7 +151,7 @@ namespace Fritz.Test
 
             bool success = _fb.GetPhonebookId(name: PhoneBookName, out ushort phonebookId);
 
-            Assert.AreEqual(true, success);
+            Assert.IsTrue(success);
 
             _fb.AddOrUpdatePhonebookEntry(phonebookId: phonebookId,
                 phonebookEntryID: 0,
@@ -169,6 +163,18 @@ namespace Fritz.Test
                     new contactTelephonyNumber() { Value = "+1 205 555 0043", type = NumberType.Work.ToString("G") },
                     new contactTelephonyNumber() { Value = "+1 205 555 0044", type = NumberType.Fax_Work.ToString("G") },
                 });
+        }
+
+        [TestMethod]
+        public void TestDelPhonebookEntryUID()
+        {
+            const string PhoneBookName = "Test Phonebook";
+
+            bool success = _fb.GetPhonebookId(name: PhoneBookName, out ushort phonebookId);
+
+            Assert.IsTrue(success);
+
+            _fb.DeletePhonebookEntryUID(phonebookId, uniqueId: "214");
         }
 
         [TestMethod]
@@ -187,8 +193,8 @@ namespace Fritz.Test
 
                 if (!ushort.TryParse(item.Item1, out ushort ctgry)) ctgry = 0;
 
-                _fb.AddOrUpdatePhonebookEntry(phonebookId: phonebookId, phonebookEntryID: phonebookEntryID, uniqueId: uniqueId, name: item.Item3, 
-                    telephonyNumbers: new List<contactTelephonyNumber>() { new contactTelephonyNumber() { Value = item.Item4, type = nmbrType.ToString("G") } }, 
+                _fb.AddOrUpdatePhonebookEntry(phonebookId: phonebookId, phonebookEntryID: phonebookEntryID, uniqueId: uniqueId, name: item.Item3,
+                    telephonyNumbers: new List<contactTelephonyNumber>() { new contactTelephonyNumber() { Value = item.Item4, type = nmbrType.ToString("G") } },
                     category: ctgry);
                 uniqueId++;
                 phonebookEntryID++;

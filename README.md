@@ -41,7 +41,11 @@ This is the FRITZ!Box free and open-source TR064 implementation.
 
 Licensed under the [MIT](https://github.com/chstorb/Fritz/blob/master/LICENSE.txt) License.
 
+
 ## External links
 * [AVM Developer Support](https://avm.de/service/schnittstellen/) 
+* [AVM TR-064 - First Steps](https://avm.de/fileadmin/user_upload/Global/Service/Schnittstellen/AVM_TR-064_first_steps.pdf)
+  * [Service description request](http://fritz.box:49000/tr64desc.xml)
+  * [x_contact SCPD (Service Control Protocol Description](http://fritz.box:49000/x_contactSCPD.xml)
 * [broadband forum - Technical Reports](https://www.broadband-forum.org/standards-and-software/technical-specifications/technical-reports)
 * [XML Schema Definition Tool (Xsd.exe)](https://docs.microsoft.com/en-US/dotnet/standard/serialization/xml-schema-definition-tool-xsd-exe)

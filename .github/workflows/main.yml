@@ -26,28 +26,14 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it      
       #- uses: actions/checkout@v2
       - uses: actions/checkout@master
-
-      # Adding a system path
-      - name: Adding msbuild path to environment variable.
-        run: echo "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin" >> $GITHUB_PATH
-       
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo "Run MSBUILD"
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo "Running actions to build, test and"
-          echo "deploy the Fritz.NET project."
                   
       - name: Setup NuGet
         uses: NuGet/setup-nuget@v1.0.5
       - run: nuget restore Fritz.sln
       
-      - name: MSBuild
-        working-directory: Fritz
-      - run: msbuild Fritz.csproj /p:Configuration=Release
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v1.0.3
+      - run: msbuild Fritz\Fritz.csproj /p:Configuration=Release
         
       #- name: Upload Artifact
       #  uses: actions/upload-artifact@v1.0.0

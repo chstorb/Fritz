@@ -35,9 +35,9 @@ jobs:
         uses: microsoft/setup-msbuild@v1.0.3
       - run: msbuild Fritz\Fritz.csproj /p:Configuration=Release
         
-      #- name: Upload Artifact
-      #  uses: actions/upload-artifact@v1.0.0
-      #  with:
-      #    name: published_library
-      #    path: bin\Release\Publish
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          name: published_library
+          path: bin\Release\Publish
           

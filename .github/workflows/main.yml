@@ -45,9 +45,9 @@ jobs:
         uses: NuGet/setup-nuget@v1.0.5
       - run: nuget restore Fritz.sln
       
-      #- name: MSBuild
-      #  working-directory: Fritz
-      #  uses: msbuild Fritz.csproj /p:Configuration=Release
+      - name: MSBuild
+        working-directory: Fritz
+      - run: msbuild Fritz.csproj /p:Configuration=Release
         
       #- name: Upload Artifact
       #  uses: actions/upload-artifact@v1.0.0

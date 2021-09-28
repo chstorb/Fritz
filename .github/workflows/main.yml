@@ -43,9 +43,7 @@ jobs:
                   
       - name: Setup NuGet
         uses: NuGet/setup-nuget@v1.0.5
-        
-      - name: Restore NuGet Packages
-        uses: nuget restore Fritz.sln
+      - run: nuget restore Fritz.sln
       
       #- name: MSBuild
       #  working-directory: Fritz

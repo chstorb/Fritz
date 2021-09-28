@@ -25,8 +25,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it      
       #- uses: actions/checkout@v2
-      - name: Check-out repository
-        uses: actions/checkout@master
+      - uses: actions/checkout@master
 
       # Adding a system path
       - name: Adding msbuild path to environment variable.

@@ -39,6 +39,6 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: published_library
-          path: Fritz.dll
+          path: D:\a\Fritz\Fritz\Fritz\bin\Release\Fritz.dll\Fritz.dll
           retention-days: 5
           

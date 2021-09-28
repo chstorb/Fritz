@@ -1,6 +1,6 @@
 # #Fritz.NET
 
-[![CI Actions Status](https://github.com/chstorb/fritz/workflows/main/badge.svg)](https://github.com/chstorb/Fritz/main)
+[![CI Actions Status](https://github.com/chstorb/Fritz/workflows/main.yml/badge.svg)](https://github.com/chstorb/Fritz/main.yml)
 
 This is the FRITZ!Box free and open-source TR064 implementation.
 

@@ -41,8 +41,8 @@ jobs:
       #    echo "Running actions to build, test and"
       #    echo "deploy the Fritz.NET project."
                   
-      #- name: Setup NuGet
-      #  uses: NuGet/setup-nuget@v1.0.2
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v1.0.2
         
       #- name: Restore NuGet Packages
       #  uses: nuget restore Fritz.sln

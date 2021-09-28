@@ -1,8 +1,17 @@
 # #Fritz.NET
 
-## Description
+[![CI Actions Status](https://github.com/chstorb/fritz/workflows/main/badge.svg)](https://github.com/chstorb/Fritz/main)
 
 This is the FRITZ!Box free and open-source TR064 implementation.
+
+### Build Status
+
+The current development branch ist `master`.
+
+### Source code
+
+* Clone the sources: `git clone https://github.com/chstorb/Fritz.git`
+
 
 ## Example
 
@@ -39,7 +48,7 @@ This is the FRITZ!Box free and open-source TR064 implementation.
 
 ## License
 
-Licensed under the [MIT](https://github.com/chstorb/Fritz/blob/master/LICENSE.txt) License.
+**#Fritz.NET** is licensed under the [MIT license](https://github.com/chstorb/Fritz/blob/master/LICENSE.txt).
 
 
 ## External links

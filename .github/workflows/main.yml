@@ -28,8 +28,8 @@ jobs:
       - uses: actions/checkout@master
 
       # Adding a system path
-      #- name: Adding msbuild path to environment variable.
-      #  run: echo "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin" >> $GITHUB_PATH
+      - name: Adding msbuild path to environment variable.
+        run: echo "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin" >> $GITHUB_PATH
        
       # Runs a single command using the runners shell
       #- name: Run a one-line script

@@ -24,7 +24,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      #- uses: actions/checkout@v2
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
@@ -36,21 +36,21 @@ jobs:
           echo Running actions to build, test and 
           echo deploy the Fritz.NET project.
           
-      - name: Setup MSBuild Path
-        uses: warrenbuckley/Setup-MSBuild@v1
+      #- name: Setup MSBuild Path
+      #  uses: warrenbuckley/Setup-MSBuild@v1
         
-      - name: Setup NuGet
-        uses: NuGet/setup-nuget@v1.0.2
+      #- name: Setup NuGet
+      #  uses: NuGet/setup-nuget@v1.0.2
         
-      - name: Restore NuGet Packages
-        uses: nuget restore Fritz.sln
+      #- name: Restore NuGet Packages
+      #  uses: nuget restore Fritz.sln
         
-      - name: Build
-        uses: msbuild Fritz.sln /p:Configuration=Release
+      #- name: Build
+      #  uses: msbuild Fritz.sln /p:Configuration=Release
         
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v1.0.0
-        with:
-          name: published_library
-          path: bin\Release\Publish
+      #- name: Upload Artifact
+      #  uses: actions/upload-artifact@v1.0.0
+      #  with:
+      #    name: published_library
+      #    path: bin\Release\Publish
           

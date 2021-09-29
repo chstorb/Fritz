@@ -13,9 +13,9 @@ The current development branch ist `master`.
 * Clone the sources: `git clone https://github.com/chstorb/Fritz.git`
 
 
-## Example
+### Example
 
-### Write phonebook to csv file
+#### Write phonebook to csv file
 
 1. Open Visual Studio
 2. Create a new **Console App**
@@ -46,12 +46,12 @@ The current development branch ist `master`.
 
 5. Run the program
 
-## License
+### License
 
 **#Fritz.NET** is licensed under the [MIT license](https://github.com/chstorb/Fritz/blob/master/LICENSE.txt).
 
 
-## External links
+### External links
 * [AVM Developer Support](https://avm.de/service/schnittstellen/) 
 * [AVM TR-064 - First Steps](https://avm.de/fileadmin/user_upload/Global/Service/Schnittstellen/AVM_TR-064_first_steps.pdf)
   * [Service description request](http://fritz.box:49000/tr64desc.xml)

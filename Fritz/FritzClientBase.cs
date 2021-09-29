@@ -49,6 +49,7 @@ namespace Fritz
         /// </summary>
         protected void DisableServerCertificateValidation()
         {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
         }
 

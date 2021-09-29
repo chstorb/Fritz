@@ -21,7 +21,7 @@ The current development branch ist `master`.
 2. Create a new **Console App**
 3. Add the [Fritz NuGet package](https://www.nuget.org/packages/Fritz) to your project. 
 ```PowerShell
-       PM> Install-Package Fritz -Version 1.0.2
+       PM> Install-Package Fritz -Version 1.0.6
 ```
 4. Add the following code to the main method:
 ```Csharp

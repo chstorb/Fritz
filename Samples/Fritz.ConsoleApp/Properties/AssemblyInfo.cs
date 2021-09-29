@@ -2,35 +2,35 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-// General Information about an assembly is controlled through the following 
+// General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Fritz.Test")]
-[assembly: AssemblyDescription("Test FRITZ!Box TR064 implementation for .NET")]
+[assembly: AssemblyTitle("Fritz.ConsoleApp")]
+[assembly: AssemblyDescription("Sample Application for FRITZ!Box TR064 implementation for .NET")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("STC STORB Consulting")]
-[assembly: AssemblyProduct("Fritz.Test")]
+[assembly: AssemblyProduct("Fritz")]
 [assembly: AssemblyCopyright("Copyright © STC STORB Consulting 2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
-// Setting ComVisible to false makes the types in this assembly not visible 
-// to COM components.  If you need to access a type in this assembly from 
+// Setting ComVisible to false makes the types in this assembly not visible
+// to COM components.  If you need to access a type in this assembly from
 // COM, set the ComVisible attribute to true on that type.
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("5a03097d-6b8a-4306-b42d-d6c1f195b2d5")]
+[assembly: Guid("8d162463-e9eb-4388-b3cb-f84e63821ede")]
 
 // Version information for an assembly consists of the following four values:
 //
 //      Major Version
-//      Minor Version 
+//      Minor Version
 //      Build Number
 //      Revision
 //
-// You can specify all the values or you can default the Build and Revision Numbers 
+// You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.6.0")]
-[assembly: AssemblyFileVersion("1.0.6.0")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]

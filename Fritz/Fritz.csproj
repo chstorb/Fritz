@@ -44,10 +44,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\ThrowIf.cs" />
     <Compile Include="Extensions\ContactExtensions.cs" />
     <Compile Include="FritzClient.cs" />
     <Compile Include="FritzClientBase.cs" />
-    <Compile Include="FritzUtility.cs" />
+    <Compile Include="Common\Utility.cs" />
     <Compile Include="NumberType.cs" />
     <Compile Include="Serialization\Contact.cs" />
     <Compile Include="Services\Contact.cs" />

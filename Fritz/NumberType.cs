@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Fritz
+﻿namespace Fritz
 {
     public enum NumberType
-    {        
+    {
         Home = 0,
         Intern = 1,
         Mobile = 2,
         Work = 3,
-        Fax_Work = 4        
+        Fax_Work = 4
     }
 }

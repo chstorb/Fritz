@@ -38,7 +38,7 @@ The current development branch ist `master`.
                     };
                     
                     // Write csv file to the application folder
-                    fritzBox.WritePhonebookCsv();
+                    fritzBox.WritePhonebookCsv(name: "Test Phonebook", folder: AppDomain.CurrentDomain.BaseDirectory, separator: ";");
                 }
             }
         }
@@ -57,4 +57,5 @@ The current development branch ist `master`.
   * [Service description request](http://fritz.box:49000/tr64desc.xml)
   * [x_contact SCPD (Service Control Protocol Description](http://fritz.box:49000/x_contactSCPD.xml)
 * [broadband forum - Technical Reports](https://www.broadband-forum.org/standards-and-software/technical-specifications/technical-reports)
+* [#Fritz.NET on nuget.org](https://www.nuget.org/packages/Fritz)
 * [XML Schema Definition Tool (Xsd.exe)](https://docs.microsoft.com/en-US/dotnet/standard/serialization/xml-schema-definition-tool-xsd-exe)

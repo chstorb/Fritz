@@ -1,17 +1,13 @@
-﻿using System;
-using System.Linq;
+﻿using Fritz.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Fritz.Services;
-using Fritz.Serialization;
-using System.Net;
+using System;
 using System.IO;
-using System.Xml.Linq;
-using System.Xml.Serialization;
+using System.Net;
 
 namespace Fritz.Test
 {
     [TestClass]
-    public class UnitTest2
+    public class SimpleTest
     {
         private FritzClientBase _fb = null;
 
@@ -24,9 +20,10 @@ namespace Fritz.Test
             _fb = new FritzClient { UserName = userName, Password = password };
         }
 
+        [Ignore]
         [TestMethod]
         public void TestGetExternalIpAddress()
-        {            
+        {
             Wanpppconn1 service = new Wanpppconn1(_fb.Url);
             service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: _fb.UserName, password: _fb.Password);
             string ip;
@@ -39,7 +36,7 @@ namespace Fritz.Test
             Tam service = new Tam(_fb.Url);
             service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: _fb.UserName, password: _fb.Password);
 
-            ushort index = 0; 
+            ushort index = 0;
             bool enable;
             string name;
             bool tamRunning;
@@ -55,7 +52,7 @@ namespace Fritz.Test
             Tam service = new Tam(_fb.Url);
             service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: _fb.UserName, password: _fb.Password);
             string url;
-            service.GetMessageList(3, out url); 
+            service.GetMessageList(3, out url);
         }
 
         [TestMethod]
@@ -82,7 +79,7 @@ namespace Fritz.Test
             var result = reader.ReadToEnd();
             return result;
         }
-        
+
         [TestMethod]
         public void TestDeviceConfigRebootFritzBox()
         {

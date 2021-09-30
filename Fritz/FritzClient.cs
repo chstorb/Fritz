@@ -1,13 +1,12 @@
-﻿using Fritz.Serialization;
-using Fritz.Services;
+﻿using Fritz.Common;
 using Fritz.Extensions;
+using Fritz.Serialization;
+using Fritz.Services;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 
 namespace Fritz
@@ -17,6 +16,8 @@ namespace Fritz
     /// </summary>
     public sealed class FritzClient : FritzClientBase
     {
+        #region Construction
+
         /// <summary>
         /// Default constructor
         /// </summary>
@@ -24,6 +25,8 @@ namespace Fritz
             : base()
         {
         }
+
+        #endregion
 
         /// <summary>
         /// Add a new entry in a telephone book using the unique ID of the entry.
@@ -36,7 +39,6 @@ namespace Fritz
         /// <param name="category"></param>
         /// <param name="email"></param>
         /// <returns>The action returns the unique ID of the new or changed entry.</returns>
-        //public string AddPhonebookEntry(ushort phonebookId, string name, string number, NumberType numberType, ushort category = 0, string email = "")
         public string AddPhonebookEntry(ushort phonebookId, string name, List<contactTelephonyNumber> telephonyNumbers, ushort category = 0, string email = "")
         {
             var service = new Contact(Url);
@@ -45,7 +47,7 @@ namespace Fritz
             var data = new StringBuilder("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
             data.Append("<contact>");
             data.Append($"<category>{category}</category>");
-            data.Append($"<person><realName>{FritzUtility.Encode(name)}</realName></person>");
+            data.Append($"<person><realName>{Utility.Encode(name)}</realName></person>");
             data.Append($"<telephony nid=\"0\">");
             if (telephonyNumbers != null)
             {
@@ -91,7 +93,7 @@ namespace Fritz
             var data = new StringBuilder("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
             data.Append("<contact>");
             data.Append($"<category>{category}</category>");
-            data.Append($"<person><realName>{FritzUtility.Encode(name)}</realName></person>");
+            data.Append($"<person><realName>{Utility.Encode(name)}</realName></person>");
             data.Append($"<telephony nid=\"0\">");
             if (telephonyNumbers != null)
             {
@@ -136,7 +138,7 @@ namespace Fritz
             var data = new StringBuilder("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
             data.Append("<contact>");
             data.Append($"<category>{category}</category>");
-            data.Append($"<person><realName>{FritzUtility.Encode(name)}</realName></person>");
+            data.Append($"<person><realName>{Utility.Encode(name)}</realName></person>");
             data.Append($"<telephony nid=\"0\">");
             if (telephonyNumbers != null)
             {
@@ -173,7 +175,6 @@ namespace Fritz
         /// <param name="phonebookId"></param>
         /// <param name="phonebookEntryId"></param>
         /// <returns></returns>
-        //public string GetPhonebookEntry(ushort phonebookId, uint phonebookEntryID)
         public contact GetPhonebookEntry(ushort phonebookId, uint phonebookEntryId)
         {
             var service = new Contact(Url);
@@ -213,11 +214,23 @@ namespace Fritz
         }
 
         /// <summary>
+        /// Determines if the specified phonebook exists.
+        /// </summary>
+        /// <param name="name">The phonebook to check.</param>
+        /// <returns>true if the phonebook exists; otherwise false.</returns>
+        public bool PhonebookExists(string name)
+        {
+            ThrowIf.NullOrEmpty(name, nameof(name));
+            var phonebook = GetPhonebook(name);
+            return phonebook != null;
+        }
+
+        /// <summary>
         /// Write phonebook to csv file.
         /// </summary>
         /// <param name="name">phonebook name, if empty all phonebooks will be written</param>
         /// <param name="folder">output folder</param>
-        public void WritePhonebookCsv(string name = "", string folder = "", string separator=";")
+        public void WritePhonebookCsv(string name = "", string folder = "", string separator = ";")
         {
             if (!string.IsNullOrEmpty(folder))
             {
@@ -243,7 +256,7 @@ namespace Fritz
 
                 var content = new StringBuilder($"category{separator}uniqueid{separator}name{separator}number{separator}type{Environment.NewLine}");
                 foreach (phonebooksPhonebookContact contact in pbooks.Items[0].contact)
-                {                    
+                {
                     content.Append($"{contact.category}{separator}{contact.uniqueid}{separator}{contact.person[0].realName}{separator}{contact.telephony[0].number[0].Value}{separator}{contact.telephony[0].number[0].type}{Environment.NewLine}");
                 }
 
@@ -271,7 +284,7 @@ namespace Fritz
             }
 
             var service = new Contact(Url);
-            service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: UserName, password: Password);                       
+            service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: UserName, password: Password);
 
             foreach (var phoneBook in service.GetPhonebookList())
             {

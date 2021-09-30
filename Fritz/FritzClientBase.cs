@@ -1,4 +1,5 @@
-﻿using Fritz.Extensions;
+﻿using Fritz.Common;
+using Fritz.Extensions;
 using Fritz.Serialization;
 using Fritz.Services;
 using System;
@@ -22,6 +23,8 @@ namespace Fritz
 
         #endregion
 
+        #region Construction
+
         /// <summary>
         /// Default constructor
         /// </summary>
@@ -29,6 +32,8 @@ namespace Fritz
         {
             Initialize();
         }
+
+        #endregion
 
         /// <summary>
         /// Initialize
@@ -53,7 +58,7 @@ namespace Fritz
             ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
         }
 
-        #region Deviceinfo
+        #region Device Info
 
         /// <summary>
         /// Get the security port
@@ -68,7 +73,7 @@ namespace Fritz
 
         #endregion deviceinfo
 
-        #region Deviceconfig
+        #region Device Config
 
         /// <summary>
         /// Reboot Fritz!Box
@@ -118,6 +123,7 @@ namespace Fritz
 
         public phonebooksPhonebook GetPhonebook(string name)
         {
+            ThrowIf.NullOrEmpty(name, nameof(name));
             var service = new Contact(Url);
             service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: UserName, password: Password);
             return service.GetPhonebook(name);

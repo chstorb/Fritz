@@ -9,7 +9,7 @@ using System.Text;
 namespace Fritz.Test
 {
     [TestClass]
-    public class UnitTest1
+    public class WebClientTest
     {
         private string UserName { get; set; }
         private string Password { get; set; }
@@ -66,6 +66,7 @@ namespace Fritz.Test
             return securityPort;
         }
 
+        [Ignore]
         [TestMethod]
         public void TestGetExternalIpAddress()
         {
@@ -91,6 +92,7 @@ namespace Fritz.Test
             var reply = client.UploadString(address, data);
         }
 
+        [Ignore]
         [TestMethod]
         public void TestForceTermination()
         {
@@ -202,6 +204,7 @@ namespace Fritz.Test
             var reply = client.UploadString(address, data);
         }
 
+        [Ignore]
         [TestMethod]
         public void TestComplete()
         {

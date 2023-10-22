@@ -1,8 +1,8 @@
-# #Fritz.NET
+# Fritz#
 
 [![CI Actions Status](https://github.com/chstorb/Fritz/actions/workflows/main.yml/badge.svg)](https://github.com/chstorb/Fritz/blob/master/.github/workflows/main.yml)
 
-This is the FRITZ!Box free and open-source TR064 implementation.
+The [FRITZ!Box](https://avm.de/produkte/fritzbox/) is a popular device that provides internet access, telephony, and home networking services. It supports a protocol called [TR064](https://avm.de/service/schnittstellen/), which allows remote management and configuration of the device. However, the official TR064 implementation is proprietary and closed-source, which limits the users' freedom and control over their own devices. That's why we have developed a free and open-source TR064 implementation for the FRITZ!Box, which aims to provide a more transparent, secure, and customizable alternative. Our implementation is based on the TR064 specification and compatible with the existing FRITZ!Box features. It also offers some additional benefits, such as improved performance, enhanced security, and more options for customization. With our free and open-source TR064 implementation, you can take full advantage of your FRITZ!Box and enjoy a better internet experience.
 
 ### Build Status
 
@@ -21,7 +21,7 @@ The current development branch ist `master`.
 2. Create a new **Console App**
 3. Add the [Fritz NuGet package](https://www.nuget.org/packages/Fritz) to your project. 
 ```PowerShell
-       PM> Install-Package Fritz -Version 1.0.6
+       PM> Install-Package Fritz -Version 1.1.0
 ```
 4. Add the following code to the main method:
 ```Csharp
@@ -57,5 +57,5 @@ The current development branch ist `master`.
   * [Service description request](http://fritz.box:49000/tr64desc.xml)
   * [x_contact SCPD (Service Control Protocol Description](http://fritz.box:49000/x_contactSCPD.xml)
 * [broadband forum - Technical Reports](https://www.broadband-forum.org/standards-and-software/technical-specifications/technical-reports)
-* [#Fritz.NET on nuget.org](https://www.nuget.org/packages/Fritz)
+* [Fritz# on nuget.org](https://www.nuget.org/packages/Fritz)
 * [XML Schema Definition Tool (Xsd.exe)](https://docs.microsoft.com/en-US/dotnet/standard/serialization/xml-schema-definition-tool-xsd-exe)

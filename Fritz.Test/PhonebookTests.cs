@@ -33,6 +33,7 @@ namespace Fritz.Test
         [TestCleanup]
         public void Cleanup()
         {
+            _fb.AddPhonebook(name: "Test Phonebook");
         }
 
         [TestMethod]

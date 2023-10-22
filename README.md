@@ -17,8 +17,8 @@ The current development branch ist `master`.
 
 #### Write phonebook to csv file
 
-1. Open Visual Studio
-2. Create a new **Console App**
+1. Open [Visual Studio](https://visualstudio.microsoft.com/)
+2. Create a new [Console App](https://learn.microsoft.com/en-us/visualstudio/get-started/csharp/tutorial-console?view=vs-2022)
 3. Add the [Fritz NuGet package](https://www.nuget.org/packages/Fritz) to your project. 
 ```PowerShell
        PM> Install-Package Fritz -Version 1.1.0
@@ -48,7 +48,7 @@ The current development branch ist `master`.
 
 ### License
 
-**#Fritz.NET** is licensed under the [MIT license](https://github.com/chstorb/Fritz/blob/master/LICENSE.txt).
+**Fritz#** is licensed under the [MIT license](https://github.com/chstorb/Fritz/blob/master/LICENSE.txt).
 
 
 ### External links

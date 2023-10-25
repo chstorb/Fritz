@@ -34,9 +34,18 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  
+  <!-- NuGet settings -->
   <PropertyGroup>
+    <PackageId>Fritz</PackageId>
+    <PackageTags>avm;avm-fritz;csharp;fritzbox;telephony;tr064;web</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/chstorb/Fritz</PackageProjectUrl>
+    <PackageIcon>icon.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/chstorb/Fritz</RepositoryUrl>
   </PropertyGroup>
   <ItemGroup>
     <None Include="..\LICENSE.txt" Pack="true" PackagePath="" />

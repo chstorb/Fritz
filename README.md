@@ -1,9 +1,16 @@
+
 [![Nuget version](https://img.shields.io/nuget/v/Fritz)](https://www.nuget.org/packages/Blazored.LocalStorage/)
 [![Nuget downloads](https://img.shields.io/nuget/dt/Fritz)](https://www.nuget.org/packages/Fritz/)
 [![CI Actions Status](https://github.com/chstorb/Fritz/actions/workflows/main.yml/badge.svg)](https://github.com/chstorb/Fritz/blob/master/.github/workflows/main.yml)
 
 # Fritz#
-The [FRITZ!Box](https://avm.de/produkte/fritzbox/) is a popular device that provides internet access, telephony, and home networking services. It supports a protocol called [TR064](https://avm.de/service/schnittstellen/), which allows remote management and configuration of the device. However, the official TR064 implementation is proprietary and closed-source, which limits the users' freedom and control over their own devices. That's why we have developed a free and open-source TR064 implementation for the FRITZ!Box, which aims to provide a more transparent, secure, and customizable alternative. Our implementation is based on the TR064 specification and compatible with the existing FRITZ!Box features. It also offers some additional benefits, such as improved performance, enhanced security, and more options for customization. With our free and open-source TR064 implementation, you can take full advantage of your FRITZ!Box and enjoy a better internet experience.
+The [FRITZ!Box](https://avm.de/produkte/fritzbox/) is a popular device that provides internet access, telephony, and home 
+networking services. It supports a protocol called [TR064](https://avm.de/service/schnittstellen/), which allows remote 
+management and configuration of the device. However, the official TR064 implementation is proprietary and closed-source, 
+which limits the users' freedom and control over their own devices. That's why we have developed a free and open-source 
+TR064 implementation for the FRITZ!Box, which aims to provide a more transparent, secure, and customizable alternative. 
+Our implementation is based on the TR064 specification and compatible with the existing FRITZ!Box features. 
+With our free and open-source TR064 implementation, you can take full advantage of your FRITZ!Box and enjoy a better internet experience.
 
 ## Installing
 
@@ -21,12 +28,14 @@ If you're using Visual Studio you can also install via the built in NuGet packag
 
 Another option to install is using the .NET CLI tool. Just run this command in your terminal:
 ```bash
-dotnet add package Blazored.LocalStorage
+dotnet add package Fritz
 ```
 
 ## Example
 
 ### Write phonebook to csv file
+
+To write a phonebook to a csv file, you need to follow these steps:
 
 1. Open [Visual Studio](https://visualstudio.microsoft.com/)
 2. Create a new [Console App](https://learn.microsoft.com/en-us/visualstudio/get-started/csharp/tutorial-console?view=vs-2022)
@@ -59,7 +68,7 @@ namespace ConsoleApp
 
 ## Testing
 
-You can find the project Fritz.Test with many unit tests in this repository. These tests are useful for learning how to write your own code. 
+You can find the project Fritz.Test with many unit tests in this repository. These tests are useful for learning how to write your own code using Fritz#. 
 You can see how they are structured, what they test, and how they report the results. 
 
 ```csharp

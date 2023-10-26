@@ -34,7 +34,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  
   <!-- NuGet settings -->
   <PropertyGroup>
     <PackageId>Fritz</PackageId>

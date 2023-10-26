@@ -1,5 +1,5 @@
 
-[![Nuget version](https://img.shields.io/nuget/v/Fritz)](https://www.nuget.org/packages/Blazored.LocalStorage/)
+[![Nuget version](https://img.shields.io/nuget/v/Fritz)](https://www.nuget.org/packages/Fritz/)
 [![Nuget downloads](https://img.shields.io/nuget/dt/Fritz)](https://www.nuget.org/packages/Fritz/)
 [![CI Actions Status](https://github.com/chstorb/Fritz/actions/workflows/main.yml/badge.svg)](https://github.com/chstorb/Fritz/blob/master/.github/workflows/main.yml)
 

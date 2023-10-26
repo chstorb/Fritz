@@ -5,6 +5,7 @@
     <version>$version$</version>
     <title>$title$</title>
     <authors>$author$</authors>
+    <iconUrl>https://github.com/chstorb/Fritz/blob/master/Fritz/icon.png</iconUrl>
     <owners>$author$</owners>
     <licenseUrl>https://github.com/chstorb/Fritz/blob/master/LICENSE.txt</licenseUrl>
     <projectUrl>https://github.com/chstorb/Fritz</projectUrl>

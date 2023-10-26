@@ -52,7 +52,7 @@ namespace Fritz.Test
             Tam service = new Tam(_fb.Url);
             service.SoapHttpClientProtocol.Credentials = new NetworkCredential(userName: _fb.UserName, password: _fb.Password);
             string url;
-            service.GetMessageList(3, out url);
+            service.GetMessageList(0, out url);
         }
 
         [TestMethod]

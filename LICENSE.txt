@@ -1,4 +1,4 @@
-#Fritz.NET
+Fritz#
 
 The MIT License (MIT)
 

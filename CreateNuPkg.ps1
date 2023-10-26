@@ -11,4 +11,4 @@
 #>
 
 Set-Location -Path ".\Fritz"
-nuget pack Fritz.csproj -Build -Properties Configuration=Release
+nuget pack Fritz.csproj -Build -Symbols -Properties Configuration=Release

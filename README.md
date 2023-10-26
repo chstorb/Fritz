@@ -96,6 +96,7 @@ public void TestTamGetInfo()
 
 ## External links
 * [AVM Developer Support](https://avm.de/service/schnittstellen/) 
+* [TR-064 Support - X_AVM-DE-OnTel](https://avm.de/fileadmin/user_upload/Global/Service/Schnittstellen/x_contactSCPD.pdf)
 * [AVM TR-064 - First Steps](https://avm.de/fileadmin/user_upload/Global/Service/Schnittstellen/AVM_TR-064_first_steps.pdf)
   * [Service description request](http://fritz.box:49000/tr64desc.xml)
   * [x_contact SCPD (Service Control Protocol Description](http://fritz.box:49000/x_contactSCPD.xml)

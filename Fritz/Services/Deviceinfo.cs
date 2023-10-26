@@ -1,13 +1,8 @@
 using System.Web.Services;
 using System.Web.Services.Protocols;
 using System.Xml.Serialization;
-using i4 = System.UInt32;
-using ui1 = System.Byte;
 using ui2 = System.UInt16;
 using ui4 = System.UInt32;
-using boolean = System.Boolean;
-using uuid = System.String;
-using dateTime = System.DateTime;
 
 namespace Fritz.Services
 {
@@ -18,9 +13,9 @@ namespace Fritz.Services
         class deviceinfo : SoapHttpClientProtocol
         {
             [SoapDocumentMethod("urn:dslforum-org:service:DeviceInfo:1#GetInfo", RequestNamespace = "urn:dslforum-org:service:DeviceInfo:1", ResponseNamespace = "urn:dslforum-org:service:DeviceInfo:1")]
-            public void GetInfo([XmlElement("NewManufacturerName", Namespace="")]out string ManufacturerName, [XmlElement("NewManufacturerOUI", Namespace="")]out string ManufacturerOUI, [XmlElement("NewModelName", Namespace="")]out string ModelName, [XmlElement("NewDescription", Namespace="")]out string Description, [XmlElement("NewProductClass", Namespace="")]out string ProductClass, [XmlElement("NewSerialNumber", Namespace="")]out string SerialNumber, [XmlElement("NewSoftwareVersion", Namespace="")]out string SoftwareVersion, [XmlElement("NewHardwareVersion", Namespace="")]out string HardwareVersion, [XmlElement("NewSpecVersion", Namespace="")]out string SpecVersion, [XmlElement("NewProvisioningCode", Namespace="")]out string ProvisioningCode, [XmlElement("NewUpTime", Namespace="")]out ui4 UpTime, [XmlElement("NewDeviceLog", Namespace="")]out string DeviceLog)
+            public void GetInfo([XmlElement("NewManufacturerName", Namespace = "")] out string ManufacturerName, [XmlElement("NewManufacturerOUI", Namespace = "")] out string ManufacturerOUI, [XmlElement("NewModelName", Namespace = "")] out string ModelName, [XmlElement("NewDescription", Namespace = "")] out string Description, [XmlElement("NewProductClass", Namespace = "")] out string ProductClass, [XmlElement("NewSerialNumber", Namespace = "")] out string SerialNumber, [XmlElement("NewSoftwareVersion", Namespace = "")] out string SoftwareVersion, [XmlElement("NewHardwareVersion", Namespace = "")] out string HardwareVersion, [XmlElement("NewSpecVersion", Namespace = "")] out string SpecVersion, [XmlElement("NewProvisioningCode", Namespace = "")] out string ProvisioningCode, [XmlElement("NewUpTime", Namespace = "")] out ui4 UpTime, [XmlElement("NewDeviceLog", Namespace = "")] out string DeviceLog)
             {
-                object[] results = this.Invoke("GetInfo", new object[] {  });
+                object[] results = this.Invoke("GetInfo", new object[] { });
                 ManufacturerName = (string)results[0];
                 ManufacturerOUI = (string)results[1];
                 ModelName = (string)results[2];
@@ -35,23 +30,23 @@ namespace Fritz.Services
                 DeviceLog = (string)results[11];
             }
 
-            [SoapDocumentMethod("urn:dslforum-org:service:DeviceInfo:1#SetProvisioningCode", OneWay=true, RequestNamespace = "urn:dslforum-org:service:DeviceInfo:1", ResponseNamespace = "urn:dslforum-org:service:DeviceInfo:1")]
-            public void SetProvisioningCode([XmlElement("NewProvisioningCode", Namespace="")]string ProvisioningCode)
+            [SoapDocumentMethod("urn:dslforum-org:service:DeviceInfo:1#SetProvisioningCode", OneWay = true, RequestNamespace = "urn:dslforum-org:service:DeviceInfo:1", ResponseNamespace = "urn:dslforum-org:service:DeviceInfo:1")]
+            public void SetProvisioningCode([XmlElement("NewProvisioningCode", Namespace = "")] string ProvisioningCode)
             {
                 this.Invoke("SetProvisioningCode", new object[] { ProvisioningCode });
             }
 
             [SoapDocumentMethod("urn:dslforum-org:service:DeviceInfo:1#GetDeviceLog", RequestNamespace = "urn:dslforum-org:service:DeviceInfo:1", ResponseNamespace = "urn:dslforum-org:service:DeviceInfo:1")]
-            public void GetDeviceLog([XmlElement("NewDeviceLog", Namespace="")]out string DeviceLog)
+            public void GetDeviceLog([XmlElement("NewDeviceLog", Namespace = "")] out string DeviceLog)
             {
-                object[] results = this.Invoke("GetDeviceLog", new object[] {  });
+                object[] results = this.Invoke("GetDeviceLog", new object[] { });
                 DeviceLog = (string)results[0];
             }
 
             [SoapDocumentMethod("urn:dslforum-org:service:DeviceInfo:1#GetSecurityPort", RequestNamespace = "urn:dslforum-org:service:DeviceInfo:1", ResponseNamespace = "urn:dslforum-org:service:DeviceInfo:1")]
-            public void GetSecurityPort([XmlElement("NewSecurityPort", Namespace="")]out ui2 SecurityPort)
+            public void GetSecurityPort([XmlElement("NewSecurityPort", Namespace = "")] out ui2 SecurityPort)
             {
-                object[] results = this.Invoke("GetSecurityPort", new object[] {  });
+                object[] results = this.Invoke("GetSecurityPort", new object[] { });
                 SecurityPort = (ui2)results[0];
             }
 

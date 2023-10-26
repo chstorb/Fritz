@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("STC STORB Consulting")]
 [assembly: AssemblyProduct("Fritz")]
-[assembly: AssemblyCopyright("Copyright © STC STORB Consulting 2022")]
+[assembly: AssemblyCopyright("Copyright © STC STORB Consulting 2023")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

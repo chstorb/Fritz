@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("STC STORB Consulting")]
 [assembly: AssemblyProduct("Fritz.Test")]
-[assembly: AssemblyCopyright("Copyright © STC STORB Consulting 2021")]
+[assembly: AssemblyCopyright("Copyright © STC STORB Consulting 2023")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

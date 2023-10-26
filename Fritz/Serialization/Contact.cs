@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Fritz.Serialization
+﻿namespace Fritz.Serialization
 {
     // NOTE: Generated code may require at least .NET Framework 4.5 or .NET Core/Standard 2.0.
     /// <remarks/>
@@ -28,7 +22,7 @@ namespace Fritz.Serialization
 
         private uint mod_timeField;
 
-        private byte uniqueidField;
+        private uint uniqueidField;
 
         /// <remarks/>
         public byte category
@@ -122,7 +116,7 @@ namespace Fritz.Serialization
         }
 
         /// <remarks/>
-        public byte uniqueid
+        public uint uniqueid
         {
             get
             {

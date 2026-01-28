@@ -1,4 +1,4 @@
-name: Build Fritz Library
+name: Build and Publish Fritz
 
 on:
   push:
@@ -9,6 +9,7 @@ on:
 
 jobs:
   build:
+    name: Build Fritz Library
     runs-on: windows-latest
 
     steps:
@@ -27,25 +28,28 @@ jobs:
       - name: Build Fritz project
         run: msbuild Fritz\Fritz.csproj /p:Configuration=Release
 
-      - name: Upload compiled DLL
+      - name: Pack NuGet package using .nuspec
+        run: nuget pack Fritz\Fritz.nuspec -OutputDirectory ./nupkg
+
+      - name: Upload NuGet package artifact
         uses: actions/upload-artifact@v4
         with:
-          name: published_library
-          path: Fritz/Fritz/bin/Release/Fritz.dll
-          retention-days: 5          
+          name: nupkg
+          path: ./nupkg/*.nupkg
+          retention-days: 5
 
-  publish: 
-    name: Publish to NuGet.org 
-    needs: build 
-    runs-on: windows-latest 
-    if: github.ref == 'refs/heads/master' 
-    
-    steps: 
-      - name: Download package artifact 
-        uses: actions/download-artifact@v4 
-        with: 
-          name: nupkg 
-          path: ./nupkg 
-      - name: Publish package to NuGet.org 
+  publish:
+    name: Publish to NuGet.org
+    needs: build
+    runs-on: windows-latest
+    if: github.ref == 'refs/heads/master'
+
+    steps:
+      - name: Download package artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: nupkg
+          path: ./nupkg
+
+      - name: Publish package to NuGet.org
         run: dotnet nuget push "./nupkg/*.nupkg" --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
-

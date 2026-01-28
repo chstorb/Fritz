@@ -2,20 +2,6 @@
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-    <PackageId>Fritz</PackageId>
-    <AssemblyName>Fritz</AssemblyName>
-    <Product>Fritz</Product>
-    <Authors>Christian Storb</Authors>
-    <Company>STORB Consulting</Company> 
-    <Description>Open‑source TR‑064 client for FRITZ!Box devices.</Description>
-    <PackageTags>fritz;fritzbox;tr064;avm;networking;dotnet</PackageTags>  
-    <PackageProjectUrl>https://github.com/chstorb/Fritz</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/chstorb/Fritz</RepositoryUrl>  
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageIconUrl>https://github.com/chstorb/Fritz/blob/master/Fritz/icon.png</PackageIconUrl>  
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-  </PropertyGroup>
-  <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{0E745728-7799-45AB-ACFE-BE108DD8415C}</ProjectGuid>
@@ -51,14 +37,21 @@
   <!-- NuGet settings -->
   <PropertyGroup>
     <PackageId>Fritz</PackageId>
-    <PackageTags>avm;avm-fritz;csharp;fritzbox;telephony;tr064;web</PackageTags>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <AssemblyName>Fritz</AssemblyName>
+    <Product>Fritz</Product>
+    <Authors>Christian Storb</Authors>
+    <Company>STORB Consulting</Company> 
+    <Description>Open‑source TR‑064 client for FRITZ!Box devices.</Description>
+    <PackageTags>avm;avm-fritz;csharp;dotnet;fritz;fritzbox;networking;telephony;tr064</PackageTags>  
     <PackageProjectUrl>https://github.com/chstorb/Fritz</PackageProjectUrl>
-    <PackageIcon>icon.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/chstorb/Fritz</RepositoryUrl>
+    <RepositoryUrl>https://github.com/chstorb/Fritz</RepositoryUrl>  
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageIconUrl>https://github.com/chstorb/Fritz/blob/master/Fritz/icon.png</PackageIconUrl>  
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
     <None Include="..\LICENSE.txt" Pack="true" PackagePath="" />

@@ -32,6 +32,20 @@ jobs:
         with:
           name: published_library
           path: Fritz/Fritz/bin/Release/Fritz.dll
-          retention-days: 5
+          retention-days: 5          
 
+  publish: 
+    name: Publish to NuGet.org 
+    needs: build 
+    runs-on: windows-latest 
+    if: github.ref == 'refs/heads/master' 
+    
+    steps: 
+      - name: Download package artifact 
+        uses: actions/download-artifact@v4 
+        with: 
+          name: nupkg 
+          path: ./nupkg 
+      - name: Publish package to NuGet.org 
+        run: dotnet nuget push "./nupkg/*.nupkg" --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
 

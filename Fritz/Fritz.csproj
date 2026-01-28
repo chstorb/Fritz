@@ -37,7 +37,6 @@
   <!-- NuGet settings -->
   <PropertyGroup>
     <PackageId>Fritz</PackageId>
-    <AssemblyName>Fritz</AssemblyName>
     <Product>Fritz</Product>
     <Authors>Christian Storb</Authors>
     <Company>STORB Consulting</Company> 

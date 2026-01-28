@@ -12,11 +12,9 @@
     <repository type="git" url="https://github.com/chstorb/Fritz" />
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Bug fixes and design improvement.</releaseNotes>
-    <copyright>Copyright © STC STORB Consulting 2023</copyright>
-    <tags>.net48 fritz box tr064 telephony avm c# csharp</tags>
-    <summary>
-      The FRITZ!Box is a popular device that provides internet access, telephony, and home networking services. It supports a protocol called TR064, which allows remote management and configuration of the device. However, the official TR064 implementation is proprietary and closed-source, which limits the users' freedom and control over their own devices. That's why we have developed a free and open-source TR064 implementation for the FRITZ!Box, which aims to provide a more transparent, secure, and customizable alternative. Our implementation is based on the TR064 specification and compatible with the existing FRITZ!Box features. It also offers some additional benefits, such as improved performance, enhanced security, and more options for customization. With our free and open-source TR064 implementation, you can take full advantage of your FRITZ!Box and enjoy a better internet experience.
-    </summary>    
+    <releaseNotes>Improved TR‑064 action handling, fixed SOAP parsing issues, updated device model.</releaseNotes>
+    <copyright>© 2026 Christian Storb and affiliated companies. All rights reserved.</copyright>
+    <tags>fritz fritzbox tr064 avm telephony home-networking csharp dotnet</tags>
+    <summary>Open‑source TR‑064 client for FRITZ!Box devices.</summary>   
   </metadata>
 </package>

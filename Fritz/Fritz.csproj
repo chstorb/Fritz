@@ -3,6 +3,8 @@
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <PackageId>Fritz</PackageId>
+    <AssemblyName>Fritz</AssemblyName>
+    <Product>Fritz</Product>
     <Authors>Christian Storb</Authors>
     <Company>STORB Consulting</Company> 
     <Description>Open‑source TR‑064 client for FRITZ!Box devices.</Description>

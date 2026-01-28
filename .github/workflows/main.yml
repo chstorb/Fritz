@@ -1,11 +1,12 @@
 name: Build and Publish Fritz
 
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
-  workflow_dispatch:
+# on:
+#   push:
+#     branches: [ master ]
+#   pull_request:
+#     branches: [ master ]
+#   workflow_dispatch:
+on: {}
 
 jobs:
   build:
@@ -28,8 +29,8 @@ jobs:
       - name: Build Fritz project
         run: msbuild Fritz\Fritz.csproj /p:Configuration=Release
 
-      - name: Pack NuGet package using .nuspec
-        run: nuget pack Fritz\Fritz.nuspec -OutputDirectory ./nupkg
+      - name: Pack NuGet package (from .csproj metadata) 
+        run: nuget pack Fritz/Fritz.csproj -Properties Configuration=Release -OutputDirectory ./nupkg
 
       - name: Upload NuGet package artifact
         uses: actions/upload-artifact@v4

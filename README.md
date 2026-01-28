@@ -103,3 +103,8 @@ public void TestTamGetInfo()
 * [broadband forum - Technical Reports](https://www.broadband-forum.org/standards-and-software/technical-specifications/technical-reports)
 * [Fritz# on nuget.org](https://www.nuget.org/packages/Fritz)
 * [XML Schema Definition Tool (Xsd.exe)](https://docs.microsoft.com/en-US/dotnet/standard/serialization/xml-schema-definition-tool-xsd-exe)
+
+
+## Author & Documentation
+🔗 https://chstorb.github.io
+

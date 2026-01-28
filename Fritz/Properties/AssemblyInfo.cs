@@ -4,14 +4,14 @@ using System.Runtime.InteropServices;
 // Allgemeine Informationen über eine Assembly werden über die folgenden 
 // Attribute gesteuert. Ändern Sie diese Attributwerte, um die Informationen zu ändern,
 // die mit einer Assembly verknüpft sind.
-[assembly: AssemblyTitle("Fritz")]
-[assembly: AssemblyDescription("FRITZ!Box TR064 implementation for .NET")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("STC STORB Consulting")]
-[assembly: AssemblyProduct("Fritz")]
-[assembly: AssemblyCopyright("Copyright © STC STORB Consulting 2023")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
+//[assembly: AssemblyTitle("Fritz")]
+//[assembly: AssemblyDescription("FRITZ!Box TR064 implementation for .NET")]
+//[assembly: AssemblyConfiguration("")]
+//[assembly: AssemblyCompany("STC STORB Consulting")]
+//[assembly: AssemblyProduct("Fritz")]
+//[assembly: AssemblyCopyright("© 2026 Christian Storb and affiliated companies. All rights reserved.")]
+//[assembly: AssemblyTrademark("")]
+//[assembly: AssemblyCulture("")]
 
 // Durch Festlegen von ComVisible auf "false" werden die Typen in dieser Assembly unsichtbar 
 // für COM-Komponenten. Wenn Sie auf einen Typ in dieser Assembly von 
@@ -31,5 +31,5 @@ using System.Runtime.InteropServices;
 // Sie können alle Werte angeben oder die standardmäßigen Build- und Revisionsnummern 
 // übernehmen, indem Sie "*" eingeben:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.1.1.0")]
-[assembly: AssemblyFileVersion("1.1.1.0")]
+[assembly: AssemblyVersion("1.1.2.0")]
+[assembly: AssemblyFileVersion("1.1.2.0")]

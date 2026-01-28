@@ -52,5 +52,8 @@ jobs:
           path: ./nupkg
 
       - name: Publish package to NuGet.org
-        run: dotnet nuget push ./nupkg/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+        #run: dotnet nuget push ./nupkg/*.nupkg --api-key ${{ secrets.FRITZ_NUGET_DEPLOY }} --source https://api.nuget.org/v3/index.json
+        run: |
+          $package = Get-ChildItem ./nupkg/*.nupkg | Select-Object -First 1
+          dotnet nuget push $package.FullName --api-key ${{ secrets.FRITZ_NUGET_DEPLOY }} --source https://api.nuget.org/v3/index.json
 
